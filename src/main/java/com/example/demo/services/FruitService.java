@@ -1,29 +1,38 @@
 package com.example.demo.services;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.example.demo.entities.FruitEntity;
 import com.example.demo.repositories.FruitRepository;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor//аннотация от Ломбок
 public class FruitService {
 
     private final FruitRepository fruitRepository;
 
-    public FruitService(FruitRepository fruitRepository) {//внедили зависимость
-        this.fruitRepository = fruitRepository;
+//здесь когда то был конструктор
+
+    public Optional<FruitEntity> getById(Integer id) {
+        return fruitRepository.findById(id);
     }
 
-    //создали публичный метод (название любое может быть)
-//на вход принимает сущность и сохраняет ее в базу
-    public void save(FruitEntity fruitEntity){
-        fruitRepository.save(fruitEntity); //реализовали метод внедренного бина
+    public void delById(Integer id) {
+        fruitRepository.deleteById(id);
     }
 
-    //возвращает лист всех сущностей из базы
-    public List<FruitEntity> getAll(){
-        return fruitRepository.findAll(); //реализовали метод внедренного бина
+    public void save(FruitEntity fruitEntity) {
+        fruitRepository.save(fruitEntity);
+    }
+
+    public List<FruitEntity> getAll() {
+        return fruitRepository.findAll();
+    }
+
+    public void saveAll(List<FruitEntity> fruits) {
+        fruitRepository.saveAll(fruits);
     }
 }
