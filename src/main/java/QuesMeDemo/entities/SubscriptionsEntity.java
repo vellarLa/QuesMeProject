@@ -20,15 +20,17 @@ public class SubscriptionsEntity {
     @GeneratedValue(generator = "generator")
     private Integer idSubscriptions;
 
-    @Column(name = "id_user", nullable = false)
-    private Integer idUser;
+    @ManyToOne(cascade=CascadeType.MERGE)
+    @PrimaryKeyJoinColumn(name = "id_user")
+    private UserEntity user;
 
-    @Column(name = "id_subscript", nullable = false)
-    private Integer idSubscript;
+    @ManyToOne(cascade=CascadeType.MERGE)
+    @PrimaryKeyJoinColumn(name = "id_subscript")
+    private UserEntity subscript;
 
-    public SubscriptionsEntity(Integer idUser, Integer idSubscript) {
-        this.idUser = idUser;
-        this.idSubscript = idSubscript;
+    public SubscriptionsEntity(UserEntity user, UserEntity subscript) {
+        this.user = user;
+        this.subscript = subscript;
     }
 
 }

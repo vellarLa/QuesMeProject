@@ -21,30 +21,33 @@ public class QuestionEntity {
     @GeneratedValue(generator = "generator")
     private Integer idQuestion;
 
-    @Column(name = "id_sender", nullable = false)
-    private Integer idSender;
+    @ManyToOne (cascade=CascadeType.MERGE)
+    @PrimaryKeyJoinColumn(name = "id_sender")
+    private UserEntity sender;
 
-    @Column(name = "id_receiver", nullable = false)
-    private Integer idReceiver;
+    @ManyToOne (cascade=CascadeType.MERGE)
+    @PrimaryKeyJoinColumn (name = "id_receiver")
+    private UserEntity receiver;
 
-    @Column(name = "id_category", nullable = false)
-    private Integer idCategory;
+    @ManyToOne (cascade=CascadeType.MERGE)
+    @PrimaryKeyJoinColumn (name = "id_category")
+    private CategoryEntity category;
 
-    @Column(name = "status", nullable = false, length = 30)
+    @Column(name = "status", nullable = false)
     private String status;
 
     @Column(name = "text", nullable = false, length = 1000)
     private String text;
 
-    @Column(name = "anonymous", nullable = false, length = 1)
+    @Column(name = "anonymous", nullable = false)
     private Character anonymous;
 
-    public QuestionEntity(Integer idSender, Integer idReceiver, Integer idCategory, String text) {
-        this.idSender = idSender;
-        this.idReceiver = idReceiver;
-        this.idCategory = idCategory;
-        this.status = "SEND";
+    public QuestionEntity(UserEntity sender, UserEntity receiver, CategoryEntity category, String text) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.category = category;
         this.text = text;
+        this.status = "SEND";
         this.anonymous = 'N';
     }
 }

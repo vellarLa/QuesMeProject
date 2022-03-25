@@ -3,6 +3,7 @@ package QuesMeDemo.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -23,26 +24,21 @@ public class ComplaintEntity {
     @Column(name = "description", nullable = false, length = 1000)
     private String description;
 
-    @Column(name = "id_sender", nullable = false)
-    private Integer idSender;
+    @OneToOne(cascade=CascadeType.MERGE)
+    @PrimaryKeyJoinColumn(name = "id_question")
+    private QuestionEntity question;
 
-    @Column(name = "id_hater", nullable = false)
-    private Integer idCategory;
-
-    @Column(name = "id_question", nullable = false)
-    private Integer idQuestion;
-
-    @Column(name = "accept", nullable = false, length = 1)
+    @Column(name = "accept", nullable = false)
     private Character accept;
 
-    @Column(name = "id_admin")
-    private Integer idAdmin;
+    @ManyToOne(cascade=CascadeType.MERGE)
+    @PrimaryKeyJoinColumn(name = "id_admin")
+    private AdminEntity admin;
 
-    public ComplaintEntity(String description, Integer idSender, Integer idCategory, Integer idQuestion){
+
+    public ComplaintEntity(String description, QuestionEntity question){
         this.description = description;
-        this.idSender = idSender;
-        this.idCategory = idCategory;
-        this.idQuestion = idQuestion;
+        this.question = question;
         this.accept = 'N';
     }
 }
