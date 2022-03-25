@@ -1,69 +1,68 @@
 package com.example.demo.utils;
 
-import com.example.demo.entities.FruitEntity;
+import com.example.demo.entities.AdminEntity;
+import com.example.demo.entities.CategoryEntity;
+import com.example.demo.entities.ComplaintEntity;
 import com.example.demo.entities.QuestionEntity;
+import com.example.demo.entities.SubscriptionsEntity;
+import com.example.demo.entities.UserEntity;
+import com.example.demo.services.AdminService;
+import com.example.demo.services.CategoryService;
+import com.example.demo.services.ComplaintService;
 import com.example.demo.services.QuestionService;
+import com.example.demo.services.SubscriptionsService;
+import com.example.demo.services.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
-import com.example.demo.services.FruitService;
-
 import javax.websocket.Session;
 import java.util.List;
 
 @Service
 public class InitiateUtils implements CommandLineRunner {
 
+    private final AdminService adminService;
+    private final CategoryService categoryService;
+    private final ComplaintService complaintService;
     private final QuestionService questionService;
-    public InitiateUtils (QuestionService questionService) {//незабываем конструктор для внедрения
+    private final SubscriptionsService subscriptionsService;
+    private final UserService userService;
+
+    public InitiateUtils (AdminService adminService, CategoryService categoryService, ComplaintService complaintService,
+                          QuestionService questionService, SubscriptionsService subscriptionsService,
+                          UserService userService){
+        this.adminService = adminService;
+        this.categoryService = categoryService;
+        this.complaintService = complaintService;
         this.questionService = questionService;
+        this.subscriptionsService = subscriptionsService;
+        this.userService = userService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        AdminEntity newAdmin = new AdminEntity();
+        CategoryEntity newCategory = new CategoryEntity();
+        ComplaintEntity newComplaint = new ComplaintEntity();
+        QuestionEntity newQuestion = new QuestionEntity();
+        SubscriptionsEntity newSubscriptions = new SubscriptionsEntity();
+        UserEntity newUser = new UserEntity();
+        adminService.save(newAdmin);
+        categoryService.save(newCategory);
+        complaintService.save(newComplaint);
+        questionService.save(newQuestion);
+        subscriptionsService.save(newSubscriptions);
+        userService.save(newUser);
 
-        QuestionEntity questionEntity = new QuestionEntity();
+        List<AdminEntity> allAdmins = adminService.getAll();
+        List<CategoryEntity> allCategories = categoryService.getAll();
+        List<ComplaintEntity> allComplaints = complaintService.getAll();
+        List<QuestionEntity> allQuestions = questionService.getAll();
+        List<SubscriptionsEntity> allSubscriptions = subscriptionsService.getAll();
+        List<UserEntity> allUsers = userService.getAll();
 
-        questionEntity.setIdSender(1);
-        questionEntity.setIdReceiver(2);
-        questionEntity.setIdQuestion(1);
-        questionEntity.setText("What is your name?");
-        questionEntity.setAnonymous('Y');
-
-        questionService.save(questionEntity);
-
-        List<QuestionEntity> all = questionService.getAll();
-
-//и выводим что получилось
-        for (QuestionEntity entity : all) {
+        for (ComplaintEntity entity : allComplaints) {
             System.out.println(entity);
         }
-
-//создаем несколько сущностей фруктов, через сеттеры заполняем поля
-        //FruitEntity fruitEntity4 = new FruitEntity();
-        //fruitEntity4.setFruitName("fruit4");
-        //fruitEntity4.setProviderCode(4);
-
-        /*FruitEntity fruitEntity2 = new FruitEntity();
-        fruitEntity2.setFruitName("fruit2");
-        fruitEntity2.setProviderCode(2);
-
-        FruitEntity fruitEntity3 = new FruitEntity();
-        fruitEntity3.setFruitName("fruit3");
-        fruitEntity3.setProviderCode(3);
-
-//с помощью переменной сервиса вызываем методы сохранения в базу, по разу для одного объекта
-        fruitService.save(fruitEntity1);
-        fruitService.save(fruitEntity2);*/
-        //fruitService.save(fruitEntity4);
-
-//здесь вытаскиваем базу обратно
-        /*List<FruitEntity> all = fruitService.getAll();
-
-//и выводим что получилось
-        for (FruitEntity entity : all) {
-            System.out.println(entity);
-        }*/
-
     }
 }
 

@@ -8,18 +8,18 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.awt.image.BufferedImage;
 
-@Data//аннотация сгенирует при компиляции необходимый код
+@Data
 @Entity
 @Table(name = "USERS")
 public class UserEntity {
 
     @Id
-    @Column(name = "id_user0")
+    @Column(name = "id_user")
     @GenericGenerator(name = "generator", strategy = "increment")
     @GeneratedValue(generator = "generator")
     private Integer idUser;
-    /*
-    @NonNull
+
+    /*@NonNull
     @Column(name = "nickname", unique = true, length = 15)
     private String nickname;
 
@@ -52,28 +52,28 @@ public class UserEntity {
     @NonNull
     @Column(name = "password", length = 20)
     private String password;*/
-    @Column(name = "nickname0")
-    private String nickname0;
+    @Column(name = "nickname")
+    private String nickname;
 
-    @Column(name = "name0")
-    private String name0;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "description0")
-    private String description0;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "sex0")
-    private Character sex0;
+    @Column(name = "sex")
+    private Character sex;
 
-    @Column(name = "active0")
-    private Character active0;
+    @Column(name = "active")
+    private Character active;
 
-    @Column(name = "ban0")
-    private Integer ban0;
+    @Column(name = "ban")
+    private Integer ban;
 
-    @Column(name = "login0")
-    private String login0;
+    @Column(name = "login")
+    private String login;
 
-    @Column(name = "password0")
-    private String password0;
+    @Column(name = "password")
+    private String password;
 }
 

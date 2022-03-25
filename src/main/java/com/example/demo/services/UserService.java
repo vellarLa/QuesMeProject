@@ -15,18 +15,16 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-//здесь когда то был конструктор
-
-    public Optional<UserEntity> getById(Integer idQuestion) {
-        return userRepository.findById(idQuestion);
+    public Optional<UserEntity> getById(Integer idUser) {
+        return userRepository.findById(idUser);
     }
 
-    public void delById(Integer idQuestion) {
-        userRepository.deleteById(idQuestion);
+    public void delById(Integer idUser) {
+        userRepository.deleteById(idUser);
     }
 
-    public void save(UserEntity questionEntity) {
-        userRepository.save(questionEntity);
+    public void save(UserEntity userEntity) {
+        userRepository.save(userEntity);
     }
 
     public List<UserEntity> getAll() {

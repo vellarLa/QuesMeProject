@@ -13,8 +13,6 @@ public class QuestionService {
 
     private final QuestionRepository questionRepository;
 
-//здесь когда то был конструктор
-
     public Optional<QuestionEntity> getById(Integer idQuestion) {
         return questionRepository.findById(idQuestion);
     }
