@@ -1,8 +1,8 @@
-package com.example.demo.repositories;
+package QuesMeDemo.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.example.demo.entities.QuestionEntity;
+import QuesMeDemo.entities.QuestionEntity;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<QuestionEntity,Integer>{

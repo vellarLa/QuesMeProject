@@ -1,9 +1,10 @@
-package com.example.demo.services;
+package QuesMeDemo.services;
 
+import QuesMeDemo.entities.SubscriptionsEntity;
+import QuesMeDemo.repositories.SubscriptionsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.example.demo.entities.SubscriptionsEntity;
-import com.example.demo.repositories.SubscriptionsRepository;
+
 import java.util.List;
 import java.util.Optional;
 

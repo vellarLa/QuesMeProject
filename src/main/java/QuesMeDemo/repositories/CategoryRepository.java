@@ -1,6 +1,6 @@
-package com.example.demo.repositories;
+package QuesMeDemo.repositories;
 
-import com.example.demo.entities.CategoryEntity;
+import QuesMeDemo.entities.CategoryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
