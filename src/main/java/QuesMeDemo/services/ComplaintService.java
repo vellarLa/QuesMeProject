@@ -35,10 +35,10 @@ public class ComplaintService {
         save(complaintEntity);
     }
 
-    public void deleteByIdQuestion (Integer idQuestion) {
+    public void deleteByIdQuestion (Integer idCategory) {
         List<ComplaintEntity> all = getAll();
         for (ComplaintEntity  complaint: all) {
-            if (complaint.getQuestion().getIdQuestion() == idQuestion) {
+            if (complaint.getQuestion().getCategory().getIdCategory() == idCategory) {
                 delById(complaint.getIdComplaint());
             }
         }

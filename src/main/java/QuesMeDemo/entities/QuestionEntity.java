@@ -46,12 +46,13 @@ public class QuestionEntity {
     @Column(name = "anonymous")
     private Character anonymous;
 
-    public QuestionEntity(UserEntity sender, UserEntity receiver, CategoryEntity category, String text) {
+    public QuestionEntity(UserEntity sender, UserEntity receiver, CategoryEntity category, String text, Character anonymous) {
         this.sender = sender;
         this.receiver = receiver;
         this.category = category;
         this.text = text;
         this.status = "SEND";
-        this.anonymous = 'N';
+        if (anonymous != null) this.anonymous = anonymous;
+        else this.anonymous = 'N';
     }
 }
