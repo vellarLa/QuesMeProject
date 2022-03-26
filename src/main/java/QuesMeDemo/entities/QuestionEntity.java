@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -22,10 +24,12 @@ public class QuestionEntity {
     private Integer idQuestion;
 
     @ManyToOne (cascade=CascadeType.MERGE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @PrimaryKeyJoinColumn(name = "id_sender")
     private UserEntity sender;
 
     @ManyToOne (cascade=CascadeType.MERGE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @PrimaryKeyJoinColumn (name = "id_receiver")
     private UserEntity receiver;
 

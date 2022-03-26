@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -28,8 +30,8 @@ public class ComplaintEntity {
     @PrimaryKeyJoinColumn(name = "id_question")
     private QuestionEntity question;
 
-    @Column(name = "accept")
-    private Character accept;
+    @Column(name = "status")
+    private String status;
 
     @ManyToOne(cascade=CascadeType.MERGE)
     @PrimaryKeyJoinColumn(name = "id_admin")
@@ -39,6 +41,6 @@ public class ComplaintEntity {
     public ComplaintEntity(String description, QuestionEntity question){
         this.description = description;
         this.question = question;
-        this.accept = 'N';
+        this.status = "Рассматривается";
     }
 }

@@ -1,7 +1,6 @@
 package QuesMeDemo.services;
 
 import QuesMeDemo.entities.SubscriptionsEntity;
-import QuesMeDemo.entities.UserEntity;
 import QuesMeDemo.exeptions.ErrorFieldException;
 import QuesMeDemo.repositories.SubscriptionsRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +23,7 @@ public class SubscriptionsService {
         subscriptionsRepository.deleteById(idSubscriptions);
     }
 
+
     public void save(SubscriptionsEntity subscriptionsEntity) throws ErrorFieldException {
         if (subscriptionsEntity.getUser().getIdUser() == subscriptionsEntity.getSubscript().getIdUser())
             throw new ErrorFieldException("Вы не можете подписаться сами на себя.");
@@ -31,17 +31,15 @@ public class SubscriptionsService {
         for (SubscriptionsEntity subscript : all) {
             if (subscript.getUser().getIdUser() == subscriptionsEntity.getUser().getIdUser() &&
                     subscript.getSubscript().getIdUser() == subscriptionsEntity.getSubscript().getIdUser()) {
-                throw new ErrorFieldException("Логин не уникален.");
+                throw new ErrorFieldException("Вы уже подписаны на этого пользователя.");
             }
         }
         subscriptionsRepository.save(subscriptionsEntity);
     }
-
     public List<SubscriptionsEntity> getAll() {
         return subscriptionsRepository.findAll();
     }
-
-    public void saveAll(List<SubscriptionsEntity> subscriptions) {
+    /*public void saveAll(List<SubscriptionsEntity> subscriptions) {
         subscriptionsRepository.saveAll(subscriptions);
-    }
+    }*/
 }

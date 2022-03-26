@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -20,11 +22,13 @@ public class SubscriptionsEntity {
     @GeneratedValue(generator = "generator")
     private Integer idSubscriptions;
 
-    @ManyToOne(cascade=CascadeType.MERGE)
+    @ManyToOne(cascade={CascadeType.MERGE, CascadeType.REMOVE})
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @PrimaryKeyJoinColumn(name = "id_user")
     private UserEntity user;
 
-    @ManyToOne(cascade=CascadeType.MERGE)
+    @ManyToOne(cascade={CascadeType.MERGE, CascadeType.REMOVE})
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @PrimaryKeyJoinColumn(name = "id_subscript")
     private UserEntity subscript;
 

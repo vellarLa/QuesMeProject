@@ -1,5 +1,7 @@
 package QuesMeDemo.services;
 
+import QuesMeDemo.entities.CategoryEntity;
+import QuesMeDemo.entities.ComplaintEntity;
 import QuesMeDemo.exeptions.ErrorFieldException;
 import QuesMeDemo.exeptions.NullFieldException;
 import QuesMeDemo.repositories.QuestionRepository;
@@ -15,21 +17,36 @@ import java.util.Optional;
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final ComplaintService complaintService;
 
     public Optional<QuestionEntity> getById(Integer idQuestion) {
         return questionRepository.findById(idQuestion);
     }
 
     public void delById(Integer idQuestion) {
+        complaintService.deleteByIdQuestion(idQuestion);
         questionRepository.deleteById(idQuestion);
     }
 
+    public void updateStatus(Integer id, String status) throws ErrorFieldException, NullFieldException {
+        QuestionEntity questionEntity = getById(id).get();
+        questionEntity.setStatus(status);
+        save(questionEntity);
+    }
 
+    public void nullCategory(Integer idCategory) throws ErrorFieldException, NullFieldException {
+        List<QuestionEntity> all = getAll();
+        for (QuestionEntity  question: all) {
+            if (question.getCategory().getIdCategory() == idCategory) {
+                question.setCategory(null);
+                save(question);
+            }
+        }
+    }
 
     public void save(QuestionEntity questionEntity) throws NullFieldException, ErrorFieldException {
 
-        if (questionEntity.getSender() == null || questionEntity.getReceiver() == null ||
-        questionEntity.getCategory() == null || questionEntity.getText() == null)
+        if (questionEntity.getSender() == null || questionEntity.getReceiver() == null || questionEntity.getText() == null)
         throw new NullFieldException();
         if (questionEntity.getSender().getIdUser() == questionEntity.getReceiver().getIdUser())
             throw new ErrorFieldException("Отправитель и получатель совпадают!");
@@ -37,12 +54,10 @@ public class QuestionService {
             throw new ErrorFieldException("Слишком длинный вопрос (максимально 1000 символов).");
         questionRepository.save(questionEntity);
     }
-
     public List<QuestionEntity> getAll() {
         return questionRepository.findAll();
     }
-
-    public void saveAll(List<QuestionEntity> questions) {
+    /*public void saveAll(List<QuestionEntity> questions) {
         questionRepository.saveAll(questions);
-    }
+    }*/
 }
