@@ -21,14 +21,14 @@ public class ComplaintEntity {
     @GeneratedValue(generator = "generator")
     private Integer idComplaint;
 
-    @Column(name = "description", nullable = false, length = 1000)
+    @Column(name = "description", length = 1000)
     private String description;
 
     @OneToOne(cascade=CascadeType.MERGE)
     @PrimaryKeyJoinColumn(name = "id_question")
     private QuestionEntity question;
 
-    @Column(name = "accept", nullable = false)
+    @Column(name = "accept")
     private Character accept;
 
     @ManyToOne(cascade=CascadeType.MERGE)

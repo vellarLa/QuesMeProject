@@ -1,5 +1,7 @@
 package QuesMeDemo.services;
 
+import QuesMeDemo.exeptions.ErrorFieldException;
+import QuesMeDemo.exeptions.NullFieldException;
 import QuesMeDemo.repositories.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,17 @@ public class QuestionService {
         questionRepository.deleteById(idQuestion);
     }
 
-    public void save(QuestionEntity questionEntity) {
+
+
+    public void save(QuestionEntity questionEntity) throws NullFieldException, ErrorFieldException {
+
+        if (questionEntity.getSender() == null || questionEntity.getReceiver() == null ||
+        questionEntity.getCategory() == null || questionEntity.getText() == null)
+        throw new NullFieldException();
+        if (questionEntity.getSender().getIdUser() == questionEntity.getReceiver().getIdUser())
+            throw new ErrorFieldException("Отправитель и получатель совпадают!");
+        if (questionEntity.getText().length()>999)
+            throw new ErrorFieldException("Слишком длинный вопрос (максимально 1000 символов).");
         questionRepository.save(questionEntity);
     }
 

@@ -20,13 +20,13 @@ public class AdminEntity {
     @GeneratedValue(generator = "generator")
     private Integer idAdmin;
 
-    @Column(name = "full_name", nullable = false, length = 50)
+    @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "login", nullable = false, unique = true, length = 15)
+    @Column(name = "login")
     private String login;
 
-    @Column(name = "password", nullable = false, length = 15)
+    @Column(name = "password")
     private String password;
 
     public AdminEntity (String fullName, String login, String password) {

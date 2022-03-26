@@ -33,13 +33,13 @@ public class QuestionEntity {
     @PrimaryKeyJoinColumn (name = "id_category")
     private CategoryEntity category;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private String status;
 
-    @Column(name = "text", nullable = false, length = 1000)
+    @Column(name = "text", length = 1000)
     private String text;
 
-    @Column(name = "anonymous", nullable = false)
+    @Column(name = "anonymous")
     private Character anonymous;
 
     public QuestionEntity(UserEntity sender, UserEntity receiver, CategoryEntity category, String text) {

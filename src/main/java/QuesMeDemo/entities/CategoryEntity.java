@@ -20,7 +20,7 @@ public class CategoryEntity {
     @GeneratedValue(generator = "generator")
     private Integer idCategory;
 
-    @Column(name = "title", nullable = false, length = 30, unique = true)
+    @Column(name = "title")
     private String title;
 
     public CategoryEntity(String title){

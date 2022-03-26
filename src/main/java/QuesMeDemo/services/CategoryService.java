@@ -1,5 +1,6 @@
 package QuesMeDemo.services;
 
+import QuesMeDemo.exeptions.NullFieldException;
 import QuesMeDemo.repositories.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,9 @@ public class CategoryService {
         categoryRepository.deleteById(idCategory);
     }
 
-    public void save(CategoryEntity categoryEntity) {
+    public void save(CategoryEntity categoryEntity) throws NullFieldException {
+        if (categoryEntity.getTitle() == null)
+            throw new NullFieldException();
         categoryRepository.save(categoryEntity);
     }
 

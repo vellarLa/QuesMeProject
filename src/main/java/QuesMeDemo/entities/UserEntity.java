@@ -23,35 +23,36 @@ public class UserEntity {
     //@Column(name = "avatar")
     //private BufferedImage avatar;
 
-    @Column(name = "nickname", nullable = false, length = 15, unique = true)
+    @Column(name = "nickname")
     private String nickname;
 
-    @Column(name = "name", nullable = false, length = 25)
+    @Column(name = "name")
     private String name;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "sex", nullable = false)
+    @Column(name = "sex")
     private Character sex;
 
     @Column(name = "active")
     private Character active;
 
-    @Column(name = "ban", length = 2)
+    @Column(name = "ban")
     private Integer ban;
 
-    @Column(name = "login", nullable = false, length = 15, unique = true)
+    @Column(name = "login")
     private String login;
 
-    @Column(name = "password", nullable = false, length = 15)
+    @Column(name = "password")
     private String password;
 
     public UserEntity (String nickname, String name, String description, Character sex, String login, String password) {
         this.nickname = nickname;
         this.name = name;
         this.description = description;
-        this.sex = sex;
+        if (sex != null) this.sex = sex;
+        else this.sex = 'М';
         this.login = login;
         this.password = password;
         this.active = 'А';
