@@ -26,15 +26,15 @@ public class ComplaintEntity {
     @Column(name = "description", length = 1000)
     private String description;
 
-    @OneToOne(cascade=CascadeType.MERGE)
-    @PrimaryKeyJoinColumn(name = "id_question")
+    @OneToOne
+    @JoinColumn(name = "id_question")
     private QuestionEntity question;
 
     @Column(name = "status")
     private String status;
 
     @ManyToOne(cascade=CascadeType.MERGE)
-    @PrimaryKeyJoinColumn(name = "id_admin")
+    @JoinColumn(name = "id_admin")
     private AdminEntity admin;
 
 

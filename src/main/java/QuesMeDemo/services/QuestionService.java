@@ -24,6 +24,7 @@ public class QuestionService {
     }
 
     public void delById(Integer idQuestion) {
+        List<ComplaintEntity> all = complaintService.getAll();
         complaintService.deleteByIdQuestion(idQuestion);
         questionRepository.deleteById(idQuestion);
     }

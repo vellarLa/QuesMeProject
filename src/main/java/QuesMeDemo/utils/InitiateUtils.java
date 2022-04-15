@@ -70,7 +70,7 @@ public class InitiateUtils implements CommandLineRunner {
         }catch (NullFieldException | ErrorFieldException ex) {System.out.println(ex.getMessage());}
     }
     public void deleteTest (ComplaintEntity complaint, QuestionEntity question, UserEntity user, CategoryEntity category) {
-        complaintService.deleteByIdQuestion(1);
+        complaintService.deleteByIdQuestion(4);
         questionService.delById(question.getIdQuestion());
         try {
             categoryService.delById(category.getIdCategory());
@@ -132,7 +132,7 @@ public class InitiateUtils implements CommandLineRunner {
         SubscriptionsEntity newSubscription3 = new SubscriptionsEntity(user3, user4);
         SubscriptionsEntity newSubscription4 = new SubscriptionsEntity(user1, user5);
         SubscriptionsEntity newSubscription5 = new SubscriptionsEntity(user2, user3);
-
+4
         subscriptionsService.save(newSubscription1);
         subscriptionsService.save(newSubscription2);
         subscriptionsService.save(newSubscription3);
@@ -148,16 +148,19 @@ public class InitiateUtils implements CommandLineRunner {
         adminService.save(newAdmin3);
 
         //testingSave(user1, user2);
-        deleteTest(newComplaint1, newQuestion5, user3, newCategory3);
+        deleteTest(newComplaint1, newQuestion1, user3, newCategory3);
+        //complaintService.deleteByIdQuestion(4);
+
+        //updateTest(user1);
         //List<AdminEntity> all = adminService.getAll();
         //List<CategoryEntity> all = categoryService.getAll();
-        //List<ComplaintEntity> all = complaintService.getAll();
+        List<ComplaintEntity> all = complaintService.getAll();
         //List<QuestionEntity> all = questionService.getAll();
         //List<SubscriptionsEntity> all = subscriptionsService.getAll();
         //List<UserEntity> all = userService.getAll();
-        /*for (QuestionEntity entity : all) {
+         for (ComplaintEntity entity : all) {
             System.out.println(entity);
-        }*/
+        }
     }
 }
 

@@ -35,10 +35,10 @@ public class ComplaintService {
         save(complaintEntity);
     }
 
-    public void deleteByIdQuestion (Integer idCategory) {
+    public void deleteByIdQuestion (Integer idQuestion) {
         List<ComplaintEntity> all = getAll();
         for (ComplaintEntity  complaint: all) {
-            if (complaint.getQuestion().getCategory().getIdCategory() == idCategory) {
+            if (complaint.getQuestion().getIdQuestion() == idQuestion) {
                 delById(complaint.getIdComplaint());
             }
         }
@@ -49,13 +49,14 @@ public class ComplaintService {
         if (complaintEntity.getDescription().length()>999)
             throw new ErrorFieldException("Слишком длинное описание (максимально 1000 символов).");
         List<ComplaintEntity> all = getAll();
+
         for (ComplaintEntity  complaint: all) {
-            if (complaint.getQuestion().getIdQuestion().equals(complaintEntity.getQuestion().getIdQuestion())) {
+            if (complaint.getQuestion().getIdQuestion() == complaintEntity.getQuestion().getIdQuestion()) {
                 throw new ErrorFieldException("Вы уже подали жалобу на этот вопрос.");
             }
         }
-
         complaintRepository.save(complaintEntity);
+
     }
     public List<ComplaintEntity> getAll() {
         return complaintRepository.findAll();

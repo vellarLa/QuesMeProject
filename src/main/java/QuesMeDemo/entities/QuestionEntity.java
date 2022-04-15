@@ -25,17 +25,22 @@ public class QuestionEntity {
 
     @ManyToOne (cascade=CascadeType.MERGE)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @PrimaryKeyJoinColumn(name = "id_sender")
+    @JoinColumn(name = "id_sender")
     private UserEntity sender;
 
     @ManyToOne (cascade=CascadeType.MERGE)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @PrimaryKeyJoinColumn (name = "id_receiver")
+    @JoinColumn (name = "id_receiver")
     private UserEntity receiver;
 
     @ManyToOne (cascade=CascadeType.MERGE)
-    @PrimaryKeyJoinColumn (name = "id_category")
+    @JoinColumn (name = "id_category")
     private CategoryEntity category;
+
+    /*@OneToOne(optional=false, cascade=CascadeType.MERGE)
+    @PrimaryKeyJoinColumn(name = "id_complaint")
+    @JoinColumn(name = "id_complaint")
+    private ComplaintEntity complaint;*/
 
     @Column(name = "status")
     private String status;

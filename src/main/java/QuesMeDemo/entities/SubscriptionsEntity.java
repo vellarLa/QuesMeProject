@@ -24,12 +24,12 @@ public class SubscriptionsEntity {
 
     @ManyToOne(cascade={CascadeType.MERGE, CascadeType.REMOVE})
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @PrimaryKeyJoinColumn(name = "id_user")
+    @JoinColumn(name = "id_user")
     private UserEntity user;
 
     @ManyToOne(cascade={CascadeType.MERGE, CascadeType.REMOVE})
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @PrimaryKeyJoinColumn(name = "id_subscript")
+    @JoinColumn(name = "id_subscript")
     private UserEntity subscript;
 
     public SubscriptionsEntity(UserEntity user, UserEntity subscript) {
