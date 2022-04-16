@@ -5,3 +5,9 @@ html {
        -o-background-size: cover;
        background-size: cover;
 }
+.rectangle{
+width: 70%;
+height: 80%;
+border:1px solid;
+margin:auto;
+background: #25537b;}
