@@ -1,7 +1,6 @@
 package QuesMeDemo.utils;
 
 import QuesMeDemo.entities.SubscriptionsEntity;
-import QuesMeDemo.entities.AdminEntity;
 import QuesMeDemo.entities.CategoryEntity;
 import QuesMeDemo.entities.ComplaintEntity;
 import QuesMeDemo.entities.QuestionEntity;
@@ -17,8 +16,11 @@ import QuesMeDemo.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
+import java.io.StringWriter;
 
-import java.util.List;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Service
 @RequiredArgsConstructor
@@ -83,7 +85,19 @@ public class InitiateUtils implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
-        CategoryEntity newCategory1 = new CategoryEntity("Любовь");
+
+
+        /*TemplateEngine templateEngine = new TemplateEngine();
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setTemplateMode("HTML");
+        templateEngine.setTemplateResolver(templateResolver);
+        Context context = new Context();
+        context.setVariable("h1", "Hello");
+        context.setVariable("h2", "World");
+        StringWriter stringWriter = new StringWriter();
+        templateEngine.process("html/test.html", context, stringWriter);
+        System.out.println(stringWriter.toString());*/
+       /* CategoryEntity newCategory1 = new CategoryEntity("Любовь");
         CategoryEntity newCategory2 = new CategoryEntity("Личное");
         CategoryEntity newCategory3 = new CategoryEntity("Интересы");
         CategoryEntity newCategory4 = new CategoryEntity("Другое");
@@ -160,7 +174,10 @@ public class InitiateUtils implements CommandLineRunner {
         //List<UserEntity> all = userService.getAll();
          for (ComplaintEntity entity : all) {
             System.out.println(entity);
-        }
+        }*/
+
+
+
     }
 }
 
