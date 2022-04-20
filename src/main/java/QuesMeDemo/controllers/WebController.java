@@ -26,11 +26,11 @@ public class WebController {
     @Value("${error.message}")
     private String errorMessage;
 
-    @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
-    public String index(Model model) {
+    @RequestMapping(value = { "/", "/ttt" }, method = RequestMethod.GET)
+    public String ttt(Model model) {
 
         model.addAttribute("message", message);
 
-        return "index";
+        return "ttt";
     }
 }

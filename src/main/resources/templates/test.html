@@ -5,7 +5,9 @@
   <title>Welcome</title>
   <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
   <nav class="top-menu">
-    <a class="navbar-logo" href=""><img src="@{img/logo.png}"></a>
+    <a class="navbar-logo">
+      <img th:src="@{/img/logo.png}"  width="100" />
+    </a>
     <ul class="menu-main">
       <li><a href="">Work</a></li>
       <li><a href="">About</a></li>
@@ -17,18 +19,6 @@
   </nav>
 </head>
 <body>
-<h1>Welcome</h1>
-<h2 th:utext="${message}">..!..</h2>
-
-<!--
-
-   In Thymeleaf the equivalent of
-   JSP's ${pageContext.request.contextPath}/edit.html
-   would be @{/edit.html}
-
-   -->
-
-<a th:href="@{/personList}">Person List</a>
 
 </body>
 
