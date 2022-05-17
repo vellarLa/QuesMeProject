@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новые жалобы</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 align="center" class="title_label">Новые жалобы</h1>
+<th:block th:each="complaint: ${complaints}">
+
+    <form th:object="${complaint}" th:action="@{'/complaints/consider/' + ${complaint.idComplaint}}" class="form_notif">
+        <fieldset>
+            <label th:text="${'Вопрос:' + complaint.question.text}" class="form_label"></label>
+            <label th:text="${'Причина:' + complaint.description}" class="form_label"></label>
+            <label><button type="submit" name="action" value="accept" class="form_button">Принять</button>
+                <button type="submit" name="action" value="reject" class="form_button">Отклонить</button></label>
+        </fieldset>
+    </form>
+
+</th:block>
+
+</body>
+</html>

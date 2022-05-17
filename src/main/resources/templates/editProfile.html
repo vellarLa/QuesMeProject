@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <title>EditProfile</title>
+</head>
+<body>
+<div class="backgroundClass">
+    <form class="decor" th:action="@{/editProfilePost}"
+          th:object="${user}" method="post"
+          enctype="multipart/form-data">
+        <div class="form-left-decoration"></div>
+        <div class="form-right-decoration"></div>
+        <div class="circle"></div>
+        <div class="form-inner">
+            <h1>Редактировать профиль</h1>
+            <label>Nickname:</label>
+            <input type="text" th:field="*{nickname}" placeholder="Nickname" /><br/>
+            <label>Имя:</label>
+            <input type="text" th:field="*{name}" /><br/>
+            <label>Описание:</label>
+            <input type="text" th:field="*{description}" /><br/>
+            <label>Пол:</label>
+            <div class="radioClass">
+                <input type="radio" id="contactChoice1"
+                       th:field="*{sex}" th:value='M' checked />
+                <label for="contactChoice1">Мужской</label>
+
+                <input type="radio" id="contactChoice2"
+                       th:field="*{sex}" th:value='W' th:checked="${flag} ? 'checked'" />
+                <label for="contactChoice2">Женский</label>
+            </div>
+            <label>Пароль (от 5 до 15 символов):</label>
+            <input type="text" th:field="*{password}" /><br/>
+            <label>Аватар:</label>
+            <input type="file" name="photo" accept="image/png, image/jpeg"/>
+            <input type="submit" value="Редактировать профиль">
+        </div>
+    </form>
+</div>
+</body>
+</html>

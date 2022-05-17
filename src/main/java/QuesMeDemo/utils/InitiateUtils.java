@@ -1,10 +1,6 @@
 package QuesMeDemo.utils;
 
-import QuesMeDemo.entities.SubscriptionsEntity;
-import QuesMeDemo.entities.CategoryEntity;
-import QuesMeDemo.entities.ComplaintEntity;
-import QuesMeDemo.entities.QuestionEntity;
-import QuesMeDemo.entities.UserEntity;
+import QuesMeDemo.entities.*;
 import QuesMeDemo.exeptions.ErrorFieldException;
 import QuesMeDemo.exeptions.NullFieldException;
 import QuesMeDemo.services.AdminService;
@@ -17,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import java.io.StringWriter;
+import java.util.List;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -35,17 +32,17 @@ public class InitiateUtils implements CommandLineRunner {
 
 
     public void testingSave(UserEntity user1, UserEntity user2) {
-        UserEntity notUnique = new UserEntity("Heroku", "Александ", "Люблю читать и жить в кайф", 'М', "alex1980", "111kkk5");
+        UserEntity notUnique = new UserEntity("Heroku", "Александ", "Люблю читать и жить в кайф", 'М', "alex1980", "111kkk5", null);
         try {
             userService.save(notUnique);
         } catch (NullFieldException | ErrorFieldException ex) {System.out.println(ex.getMessage());}
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        UserEntity nullField = new UserEntity("alex5", "Александ", "Люблю читать и жить в кайф", 'М', null, "111kkk5");
+        UserEntity nullField = new UserEntity("alex5", "Александ", "Люблю читать и жить в кайф", 'М', null, "111kkk5", null);
         try {
             userService.save(nullField);
         } catch (NullFieldException | ErrorFieldException ex) {System.out.println(ex.getMessage());}
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        UserEntity wrongLength = new UserEntity("alex5", "Александ", "Люблю читать и жить в кайф", 'М', "alex1980", "111kkk555411cfcfcsdcfvvf88821vf");
+        UserEntity wrongLength = new UserEntity("alex5", "Александ", "Люблю читать и жить в кайф", 'М', "alex1980", "111kkk555411cfcfcsdcfvvf88821vf", null);
         try {
             userService.save(wrongLength);
         } catch (NullFieldException | ErrorFieldException ex) {System.out.println(ex.getMessage());}
@@ -62,13 +59,13 @@ public class InitiateUtils implements CommandLineRunner {
     }
     public void updateTest (UserEntity user) {
         try {
-            userService.addBan(user.getIdUser());
+            userService.addBan(user);
         }catch (NullFieldException | ErrorFieldException ex) {System.out.println(ex.getMessage());}
         try {
-            userService.updateActive(user.getIdUser(), false);
+            userService.updateActive(user, false);
         }catch (NullFieldException | ErrorFieldException ex) {System.out.println(ex.getMessage());}
         try {
-            userService.updateNickname(user.getIdUser(), "Heroku");
+            userService.updateNickname(user, "Heroku");
         }catch (NullFieldException | ErrorFieldException ex) {System.out.println(ex.getMessage());}
     }
     public void deleteTest (ComplaintEntity complaint, QuestionEntity question, UserEntity user, CategoryEntity category) {
@@ -78,13 +75,55 @@ public class InitiateUtils implements CommandLineRunner {
             categoryService.delById(category.getIdCategory());
         }catch (NullFieldException | ErrorFieldException ex) {System.out.println(ex.getMessage());}
         try {
-            userService.addBan(user.getIdUser());
-            userService.addBan(user.getIdUser());
-            userService.addBan(user.getIdUser());
+            userService.addBan(user);
+            userService.addBan(user);
+            userService.addBan(user);
         }catch (NullFieldException | ErrorFieldException ex) {System.out.println(ex.getMessage());}
     }
     @Override
     public void run(String... args) throws Exception {
+        CategoryEntity newCategory2 = new CategoryEntity("Личное");
+        CategoryEntity newCategory3 = new CategoryEntity("Интересы");
+
+        categoryService.save(newCategory2);
+        categoryService.save(newCategory3);
+
+
+        UserEntity user2 = new UserEntity("gogolga", "Olga", "ooo", 'Ж',"dddd", "777777", "/user-photos/2/avatar0.jpg");
+        UserEntity user3 = new UserEntity("JavaRush", "Саша", "website", 'М',"JavaRush", "12345678", "");
+        UserEntity user4 = new UserEntity("Heroku", "Hero", "container", 'М',"postgres", "postgresql", "");
+
+        userService.save(user2);
+        userService.save(user3);
+        userService.save(user4);
+
+        QuestionEntity newQuestion1 = new QuestionEntity(user2, user3, newCategory2, "Как дела?", 'N');
+        QuestionEntity newQuestion2 = new QuestionEntity(user2, user3, newCategory3, "Что лучше выбрать: oracle или postgres?", 'Y');
+        QuestionEntity newQuestion3 = new QuestionEntity(user2, user4, newCategory3, "Как подключиться к Heroku?", 'N');
+        QuestionEntity newQuestion4 = new QuestionEntity(user3, user2, newCategory2, "Какие планы на завтра?", 'Y');
+        QuestionEntity newQuestion5 = new QuestionEntity(user2, user3, newCategory3, "Какой фильм посмотреть вечером?", 'N');
+
+        questionService.save(newQuestion1);
+        questionService.save(newQuestion2);
+        questionService.save(newQuestion4);
+
+        ComplaintEntity newComplaint1 = new ComplaintEntity("Слишком личная информация", newQuestion1);
+        ComplaintEntity newComplaint2 = new ComplaintEntity("Неприемлемый вопрос для всеобщего обозрения", newQuestion4);
+
+        complaintService.save(newComplaint1);
+        complaintService.save(newComplaint2);
+
+        SubscriptionsEntity newSubscription1 = new SubscriptionsEntity(user3, user2);
+        SubscriptionsEntity newSubscription2 = new SubscriptionsEntity(user2, user4);
+
+        subscriptionsService.save(newSubscription1);
+        subscriptionsService.save(newSubscription2);
+
+        AdminEntity newAdmin1 = new AdminEntity("QuesMe", "Global Admin", "87654321");
+        AdminEntity newAdmin2 = new AdminEntity("IntelliJ IDEA", "IDE2021", "202132");
+
+        adminService.save(newAdmin1);
+        adminService.save(newAdmin2);
 
 
         /*TemplateEngine templateEngine = new TemplateEngine();
@@ -95,7 +134,7 @@ public class InitiateUtils implements CommandLineRunner {
         context.setVariable("h1", "Hello");
         context.setVariable("h2", "World");
         StringWriter stringWriter = new StringWriter();
-        templateEngine.process("html/test.html", context, stringWriter);
+        templateEngine.process("html/main_profile.html", context, stringWriter);
         System.out.println(stringWriter.toString());*/
        /* CategoryEntity newCategory1 = new CategoryEntity("Любовь");
         CategoryEntity newCategory2 = new CategoryEntity("Личное");

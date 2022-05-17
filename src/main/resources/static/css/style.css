@@ -1,4 +1,929 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+html {
+       background-color: #fdd09f
+}
+h1{
+    letter-spacing: 2px;
+    font-size: 25px;
+    color: #fd1254;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    text-transform: uppercase;
+    font-weight: 800;
+        text-align: center;
+
+}
+h1 {
+  border-bottom: 3px solid #fd1254;
+}
+h2{
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #9d999d;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: 300;
+}
+h3{
+    letter-spacing: 2px;
+    font-size: 25px;
+    color: #fd1254;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    margin-top:10px;
+    font-weight: 700;
+
+}
+h4{
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #9d999d;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+h6 {
+    font-size: 25px;
+    color: #fd1254;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    margin-top:10px;
+    font-weight: 700;
+  border-bottom: 3px solid #fd1254;
+}
+.top-inf {
+z-index: 10;
+}
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
+.top-menu {
+    display: flex;
+    justify-content: center;
+    padding-top: 3px;
+    background: rgba(255,255,255,.8);
+    box-shadow: 3 px 0  rgba(0,0,0,.3);
+}
+.navbar-logo {
+    display: inline-block;
+    margin: auto;
+    padding-left:20px;
+}
+html {
+ #background-color: #FFCCCC;
+ background: url('../img/background.png') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+}
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
 .navbar-logo {
    display: inline-block;
 }
+
+
+
+.title_label{
+ letter-spacing: 4px;
+     #text-transform: uppercase;
+     font-size: 40px;
+     color: #606060;
+     font-family: 'Ubuntu Condensed', sans-serif;
+}
+.inf_label{
+     #display: inline-block;
+     background-color: rgba(255, 255, 255, 0.7);
+     padding: 119px 50px 118px 50px;
+     position: absolute;
+     top: 12.3%;
+     right: 40%;
+     left: 10%;
+     letter-spacing: 2px;
+     #text-transform: uppercase;
+     font-size: 25px;
+     color: #606060;
+     font-family: 'Ubuntu Condensed', sans-serif;
+}
+.form-welcome {
+     padding: 50px;
+     background: #fff;
+     position: absolute;
+     #display: inline-block;
+     top: 15%;
+     left: 60%;
+     #-webkit-transform: translate(-50%);
+     #-ms-transform: translate(-50%);
+     #transform: translate(-50%);
+     letter-spacing: 2px;
+     #text-transform: uppercase;
+     font-size: 25px;
+     color: #606060;
+     font-family: 'Ubuntu Condensed', sans-serif;
+ }
+.form_reg{
+     padding: 40px;
+     margin: 40px;
+     background-color: rgba(255, 255, 255, 0.7);
+
+}
+
+.form_notif{
+    padding: 25px;
+    margin: 30px 60px 0px 60px;
+    background-color: rgba(255, 255, 255, 1);
+    letter-spacing: 2px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    transition: .3s border-color;
+    font-size: 22px;
+    color: #606060;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    position: relative;
+}
+
+.type-form {
+     padding: 10px;
+     margin: 10px 0px 10px 0px;
+     display: flex;
+     flex-direction: column; # Расположили поля для заполнения в столбик.
+     flex-wrap: wrap;
+     border-radius:20px;
+     border: 1px solid #eee;
+     transition: .3s border-color;
+}
+.type-form:hover {
+  border: 1px solid #aaa;
+}
+.form_label_list{
+   margin: 10px 0px 10px 3px;
+   font-size: 25px;
+   color: #606060;
+   font-family: 'Ubuntu Condensed', sans-serif;
+   letter-spacing: 2px;
+}
+.form_label_list_anon{
+     margin: 10px 0px 10px 3px;
+     font-size: 25px;
+     color: #606060;
+     font-family: 'Ubuntu Condensed', sans-serif;
+     letter-spacing: 2px;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+
+}
+.form_label{
+     margin: 10px 0px 10px 3px;
+     display: flex;
+     flex-direction: column; # Расположили поля для заполнения в столбик.
+     flex-wrap: wrap;
+     font-size: 25px;
+     color: #606060;
+     font-family: 'Ubuntu Condensed', sans-serif;
+     letter-spacing: 2px;
+}
+.custom-checkbox{
+    width: 2em;
+    height: 2em;
+    z-index: 2.5;
+
+}
+.input_form{
+    margin: 20px 0px 20px 3px;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    color: #606060;
+    letter-spacing: 2px;
+}
+.check_form_label{
+    margin: 20px;
+    font-size: 20px;
+    color: #606060;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    letter-spacing: 2px;
+}
+.form_button {
+         margin: 10px 0px 10px 0px;
+         padding: 5px 20px;
+         background-color: #FFCCCC; # Цвет фона
+         font-family: "Сomic Sans MS", cursive;
+         font-size: 16px;
+         color :#ffffff ; # Цвет текста
+         cursor: pointer; # Тип курсора при наведение
+ }
+
+.button-Exit {
+    float: right;
+    font-weight:bold;
+    font-size: 15px;
+  }
+
+.menu-main {
+    padding-left: 50px;
+    text-align: center;
+    float: right;
+    display: inline-block;
+    margin: auto;
+}
+.menu-main li {
+    display: inline-block;
+    padding: 0px 60px;
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #606060;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+}
+.menu-main li:after {
+    position: absolute;
+    content: "|";
+    padding: 0px 60px;
+    color: #606060;
+}
+.menu-main li:last-child:after {
+    content: none;
+}
+.menu-main a{
+    text-decoration: none;
+    transition: color .2s;
+    position: relative;
+}
+.menu-main a:before, .menu-main a:after {
+    content: "";
+	position: absolute;
+	height: 4px;
+    top: auto;
+    right: 50%;
+    bottom: -5px;
+    left: 50%;
+    background: #feb386;
+    transition: .8s;
+}
+.menu-main a:hover:before, .menu-main .current:before {left: 0;}
+.menu-main a:hover:after, .menu-main .current:after {right: 0;}
+.menu-main a:visited {color: #9d999d;}
+.menu-main a:hover{
+    color: #feb386;
+}
+.top-inf{
+    display: flex;
+    margin-top: 20px;
+    min-height: 290px;
+    background: rgba(255,255,255,.8);
+    box-shadow: 3 px 0  rgba(0,0,0,.3);
+}
+.avatar {
+    display: inline-block;
+    width: 270px;
+    height: 270px;
+    margin: auto 50px;
+    background-color: #9d999d;
+}
+.avatar-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.description{
+    display: inline-block;
+    margin: auto 160px;
+    max-width: 540px;
+}
+.friends {
+    display: inline-block;
+    margin: 50px 90px;
+}
+.friends a {
+    letter-spacing: 2px;
+    font-size: 20.5px;
+    color: #ffffff;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    text-decoration: none;
+    transition: color .2s;
+    margin-right: 5px;
+}
+.friends a:visited {color: #ffffff;}
+
+.followers, .subscriptions {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #fda006;
+    opacity: 0.7;
+    width: 152px;
+    padding: 20px 12px;
+    border-radius: 100px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.followers {
+padding-left: 15px;
+}
+.subscriptions {
+    margin-top: 20px;
+}
+
+.button {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    outline: none;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    background-color: #fd1254;
+    opacity: 0.6;
+    border-radius: 100px;
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    text-transform: uppercase;
+}
+.button span, .followers span, .subscriptions span{ z-index: 2; }
+
+.button:active, .followers:active, .subscriptions:active {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+.button::before, .button::after, .followers::before, .followers::after, .subscriptions::before, .subscriptions::after {
+    content: "";
+    position: absolute;
+    transition: all 0.3s;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.button::before, .followers::before, .subscriptions::before {
+    background: rgba(255, 255, 255, 0.3);
+}
+.button:active::before, .followers:active::before, .subscriptions:active::before {
+    background: rgba(0, 0, 0, 0.1);
+}
+.button::before, .button:active::before, .followers::before, .followers:active::before, .subscriptions::before, .subscriptions:active::before {
+    opacity: 0;
+    transform: scale(1, 0.1);
+}
+.button:hover::before, .followers:hover::before, .subscriptions:hover::before {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+.my-questions {
+padding-top: 10px;
+}
+button.submit{
+  border-radius: 4px;
+  height: 44px;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-transition : all 200ms linear;
+  transition: all 200ms linear;
+  padding: 0 30px;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  text-align: center;
+  border: none;
+  background-color: #ffeba7;
+  color: #102770;
+  box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
+  margin-top: 20px;
+  letter-spacing: 2px;
+  font-size: 20px;
+  color: #9d999d;
+  font-family: 'Ubuntu Condensed', sans-serif;
+}
+button.submit:active,
+button.submit:focus{
+  background-color: #102770;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+}
+button.submit:hover{
+  background-color: #102770;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+}
+.fileform #upload{
+    margin-top: 20px;
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #9d999d;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+.questions-options {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    outline: none;
+    text-decoration: none;
+    background-color: #fda006;
+    opacity: 0.6;
+    width: 370px;
+    height: 110px;
+    border-radius: 10px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0px auto;
+}
+my-questions {
+   display: inline-block;
+
+}
+.question-block {
+   display: flex;
+
+}
+.questionBlock {
+   display: inline-block;
+   margin: auto auto;
+   text-align: center
+}
+#questionNewButton {
+    margin: auto auto;
+    margin-bottom:10px;
+    background-color: #ff5d19;
+}
+.questionProfile {
+    padding-top: 3px;
+    background: rgba(255,255,255,.8);
+    box-shadow: 3 px 0  rgba(0,0,0,.3);
+    width: 600px;
+}
+.questionProfile-head {
+   display: flex;
+}
+.avatarQuestion {
+  background: #9d999d;
+  border-radius: 50%;
+  height: 4em;
+  width: 4em;
+  display: inline-block;
+  margin-right: 20px;
+}
+.avatar-img-question {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+}
+.questionProfile-nickname {
+     display: inline-block;
+     margin: auto 0px;
+
+}
+.questionProfile-nickname a {
+    font-size: 20px;
+    color: #fd1254;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    margin-top:10px;
+    font-weight: 700;
+    border-bottom: 3px solid #fd1254;
+    text-decoration: none;
+}
+.my-questions {
+    margin-left: 30px;
+}
+.myQuestions, .myAnswers {
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    text-decoration: none;
+    transition: color .2s;
+    margin: auto;
+}
+
+.questions-options a{
+    text-decoration: none;
+    transition: color .2s;
+    position: relative;
+}
+.questions-options a:before, .questions-options a:after {
+    content: "";
+	position: absolute;
+	height: 4px;
+    top: auto;
+    right: 50%;
+    bottom: -5px;
+    left: 50%;
+    background: #ffffff;
+    transition: .8s;
+}
+.questions-options a:hover:before, .questions-options .current:before{left: 0;}
+.questions-options a:hover:after, .questions-options .current:after {right: 0;}
+.questions-options a:visited {color: #ffffff;}
+.questions-options a:hover {
+    color: #ffffff;
+}
+
+.backgroundClass {
+    position: fixed; top: 0; left: 0;
+    min-width: 100%;
+    min-height: 100%;
+	background: #333 url(/img/bg.jpg) no-repeat 100% 100%;
+	position: absolute;
+    overflow: auto;
+
+}
+.backgroundClassMain {
+    position: fixed; top: 0px; left: 0;
+    min-width: 100%;
+    min-height: 100%;
+	background: #333 url(/img/bg.jpg) no-repeat 100% 100%;
+	position: absolute;
+    overflow: auto;
+}
+.backgroundClassMainAdmin {
+    position: fixed; top: 0px; left: 0;
+    min-height: 100%;
+    min-width: 100%;
+	background: #333 url(/img/background.jpg) no-repeat 100% 100%;
+	position: absolute;
+    overflow: auto;
+}
+.decor {
+   position: relative;
+   max-width: 600px;
+   margin: 50px auto 0;
+   background: white;
+   border-radius: 30px;
+}
+.form-left-decoration, .form-right-decoration {
+   content: "";
+   position: absolute;
+   width: 50px;
+   height: 20px;
+   background: #f69a73;
+   border-radius: 20px;
+}
+.form-left-decoration {
+   bottom: 60px;
+   left: -30px;
+}
+.form-right-decoration {
+   top: 60px;
+   right: -30px;
+}
+.form-left-decoration:before, .form-left-decoration:after, .form-right-decoration:before, .form-right-decoration:after {
+   content: "";
+   position: absolute;
+   width: 50px;
+   height: 20px;
+   border-radius: 30px;
+   background: white;
+}
+.form-left-decoration:before {
+   top: -20px;
+}
+.form-left-decoration:after {
+   top: 20px;
+   left: 10px;
+}
+.form-right-decoration:before {
+   top: -20px;
+   right: 0;
+}
+.form-right-decoration:after {
+   top: 20px;
+   right: 10px;
+}
+.circle {
+   position: absolute;
+   bottom: 80px;
+   left: -55px;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   background: white;
+}
+.form-inner {
+   padding: 50px;
+}
+.form-inner input[type=text] {
+   display: block;
+   width: 92%;
+   padding: 0 20px;
+   background: #E9EFF6;
+   line-height: 40px;
+   border-width: 0;
+   border-radius: 20px;
+   font-size: 17px;
+   font-family: 'Roboto', sans-serif;
+   margin-top: 10px;
+}
+
+.form-inner input[type="submit"] {
+   position: relative;
+   border: 1px solid rgba(255, 255, 255, 0.5);
+   outline: none;
+   display: inline-block;
+   text-align: center;
+   text-decoration: none;
+   cursor: pointer;
+   padding: 12px 16px;
+   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+   background-color: #fd1254;
+   opacity: 0.6;
+   border-radius: 100px;
+   letter-spacing: 2px;
+   font-size: 20px;
+   color: #ffffff;
+   font-family: 'Ubuntu Condensed', sans-serif;
+   text-transform: uppercase;
+   margin-top: 15px;
+
+}
+.form-inner input[type=radio] {
+
+}
+.form-inner input[type=file] {
+    font-size: 20px;
+    color: #707981;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+.radioClass {
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 10px;
+    line-height: 40px;
+    font-family: 'Roboto', sans-serif;
+}
+.form-inner h1 {
+   margin-top: 0;
+   font-weight: 500;
+   font-size: 24px;
+   color: #707981;
+   font-family: 'Roboto', sans-serif;
+   text-align: center;
+}
+.form-inner label {
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #707981;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    margin:10px;
+    font-weight: 500;
+}
+.followersClass{
+   display: flex;
+
+}
+.my-followers {
+    display: inline-block;
+    width: 700px;
+    margin-top: 10px;
+    background: #ffffff;
+    margin-left: 10px;
+    border-radius: 30px;
+}
+.profileFollowerPage {
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 200px;
+    text-align: center;
+}
+.avatarProfileFollowers {
+    width: 370px;
+    height: 370px;
+    background-color: #9d999d;
+    margin: 0 auto;
+    margin-top: 20px;
+
+}
+.followersClass .avatarQuestion {
+    height: 4em;
+  width: 4em;
+}
+.beautyH {
+  padding: 25px 20px;
+  text-align: center;
+  background: rgba(255,255,255,.6);
+  width: 400px;
+  border-radius: 30%;
+}
+.beautyH  h5 {
+  font-weight: normal;
+  font-family: 'Merriweather', serif;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  line-height: 1;
+  color: #fd1254;
+  font-size: 40px;
+  padding: 10px;
+}
+.beautyH  h5:before,
+.beautyH  h5:after {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: .1em;
+  background: #fd1254;
+}
+.beautyH  h5:before {
+  left: 0;
+  top: 0;
+}
+.beautyH  h5:after {
+  right: 0;
+  bottom: 0;
+}
+.beautyH  h5 span:before,
+.beautyH  h5 span:after {
+  content: "";
+  position: absolute;
+  width: .65em;
+  height: .65em;
+  border: .1em solid #fd1254;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.beautyH  h5 span:before {
+  top: -.55em;
+  left: -.325em;
+}
+.beautyH  h5 span:after {
+  bottom: -.55em;
+  right: -.325em;
+}
+.followerProfile-div {
+   display: flex;
+   min-height: 40 px;
+}
+.followerProfile-head {
+  display: inline-block;
+  margin: auto 0px;
+  column-width: 280px;
+}
+.followerProfile {
+    padding: 5px 40px;
+    margin: 10px 20px;
+    background: #E9EFF6;
+    border-radius: 20px;
+    width: 575px;
+    min-height: 40 px;
+}
+.followerProfile-nickname {
+    display: block;
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #fd1254;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    text-decoration: none;
+
+}
+.followerProfile-nickname a:visited {color: #fd1254;}
+.NameFollower {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+.subscriptFollower {
+    display: inline-block;
+    margin: auto 0px;
+}
+.subBut {
+ position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.8;
+    width: 190px;
+    padding: 15px 12px;
+    border-radius: 100px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    background-color: #fd1254;
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    text-transform: uppercase;
+}
+#SubscriptButton {
+    background-color: #eee657;
+}
+#UnSubscriptButton {
+    background-color: #97ce68;
+}
+#login {
+   font-size: 17px;
+   color: #707981;
+   font-family: 'Ubuntu Condensed', sans-serif;
+   margin-top: 20px;
+}
+.category {
+    display: flex;
+}
+
+.newCategory {
+    display: inline-block;
+}
+#formCategory {
+    margin: 20px 50px 0;
+}
+
+.categoryList {
+    display: inline-block;
+    border-radius: 30px;
+    width: 350px;
+    padding: 50px;
+    margin: 20px 20px 0px 300px;
+    background: rgba(255,255,255,.8);
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #707981;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: 500;
+}
+.categoryList h1 {
+    margin-top: 0;
+   font-weight: 500;
+   font-size: 24px;
+   color: #707981;
+   font-family: 'Roboto', sans-serif;
+   text-align: center;
+}
+.spisok {
+  margin-bottom: 8px;
+  padding:0;
+  list-style: none;
+  counter-reset: li;
+}
+.spisok li {
+  position: relative;
+  max-width: 600px;
+  border-radius: 30px;
+  border: 2px solid #f69a73;
+  background: #ffffff;
+  padding: 10px 15px 10px 20px;
+  margin: 12px 0 12px 40px;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.spisok li:hover {
+  background: #ffefd8;
+}
+.spisok li:before {
+  line-height: 32px;
+  position: absolute;
+  top: 4px;
+  left: -39px;
+  width: 39px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background: #f69a73;
+  counter-increment: li;
+  content: counter(li);
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+}
+.spisok li:hover:before {
+  width:46px;
+}
+.spisok li:after {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  content: "";
+  height: 0;
+  width: 0;
+  border: 16px solid transparent;
+  border-left-color: #f69a73;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+}
+.spisok li:hover:after {
+  margin-left: 6px;
+}
+
 

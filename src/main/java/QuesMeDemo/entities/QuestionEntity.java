@@ -1,4 +1,5 @@
 package QuesMeDemo.entities;
+import QuesMeDemo.exeptions.ErrorFieldException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -37,11 +40,6 @@ public class QuestionEntity {
     @JoinColumn (name = "id_category")
     private CategoryEntity category;
 
-    /*@OneToOne(optional=false, cascade=CascadeType.MERGE)
-    @PrimaryKeyJoinColumn(name = "id_complaint")
-    @JoinColumn(name = "id_complaint")
-    private ComplaintEntity complaint;*/
-
     @Column(name = "status")
     private String status;
 
@@ -51,13 +49,26 @@ public class QuestionEntity {
     @Column(name = "anonymous")
     private Character anonymous;
 
+
+    public boolean meLiked;
+
     public QuestionEntity(UserEntity sender, UserEntity receiver, CategoryEntity category, String text, Character anonymous) {
         this.sender = sender;
         this.receiver = receiver;
         this.category = category;
         this.text = text;
-        this.status = "SEND";
+        this.status = "Отправлен";
         if (anonymous != null) this.anonymous = anonymous;
         else this.anonymous = 'N';
+        meLiked = false;
+    }
+
+    public void updateMeLiked (UserEntity user) {
+        if (meLiked)  {
+            meLiked = false;
+        }
+        else {
+            meLiked = true;
+        }
     }
 }

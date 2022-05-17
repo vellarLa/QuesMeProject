@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ошибка</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 align="center" class="title_label">Ошибка</h1>
+<form class="form_reg" th:action="@{/welcomeFormBack}">
+  <fieldset>
+
+    <label class="form_label">Пользователь с такими данными не существует. Введённые данные не верны, попробуйте снова.</label>
+    <label class="form_label"><a th:href="@{/forget_password}">Забыли пароль?</a></label>
+    <label><button type="submit" class="form_button">Назад</button></label>
+
+  </fieldset>
+</form>
+</body>
+</html>

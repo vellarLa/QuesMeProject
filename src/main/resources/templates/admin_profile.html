@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<div class="backgroundClassMainAdmin">
+    <head>
+        <meta charset="UTF-8" />
+        <title>myAdminProfile</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <div class="top-menu">
+            <div class="navbar-logo">
+                <img th:src="@{/img/logo.png}"  width="200" />
+            </div>
+            <div class="menu-main">
+                <ul>
+                    <li><a href="">Главная</a></li>
+                    <li><a href="">Статистика</a></li>
+                    <li><a href="">Пользователи</a></li>
+                    <li><a href="">Выйти</a></li>
+                </ul>
+            </div>
+        </div>
+    </head>
+    <body>
+    <div class="top-inf">
+        <div class="avatar">
+            <img  class = "avatar-img" th:src="@{'/img/admin.jpg'}" alt="Avatar"/>
+        </div>
+        <div class="description">
+            <h1 th:utext="${FullName}"></h1>
+            <h3>Роль - администратор</h3>
+            <a id="UpdateProfile" class="button" th:href="@{'/profileAdmin/edit'}">
+                <span>Редактировать профиль</span>
+            </a>
+        </div>
+            <div class="friends">
+                <a class="followers" th:href="@{'/profile/followers'}"> <span>Новые жалобы</span></a>
+                <a class="subscriptions" th:href="@{'/profile/subscriptions'}"> <span>Банк жалоб</span> </a>
+            </div>
+    </div>
+    <div class="category">
+        <div class="categoryList">
+            <h1>Категории:</h1>
+            <ul class="spisok" th:each ="category : ${categories}">
+                <li><span th:text="${category.getTitle()}"></span></li>
+            </ul>
+        </div>
+        <div class="newCategory">
+            <form id="formCategory" class="decor" th:action="@{/editProfilePost}"
+                  th:object="${category}" method="post">
+                <div class="form-left-decoration"></div>
+                <div class="form-right-decoration"></div>
+                <div class="circle"></div>
+                <div  class="form-inner">
+                    <h1>Создать категорию</h1>
+                    <label>Название:</label>
+                    <input type="text" th:field="*{title}" placeholder="Новая категория" /><br/>
+                    <input type="submit" value="Добавить категорию">
+                </div>
+            </form>
+        </div>
+    </div>
+    </body>
+</div>
+</html>

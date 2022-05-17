@@ -2,6 +2,7 @@ package QuesMeDemo.services;
 
 import QuesMeDemo.entities.AdminEntity;
 import QuesMeDemo.entities.ComplaintEntity;
+import QuesMeDemo.entities.NotificationEntity;
 import QuesMeDemo.exeptions.ErrorFieldException;
 import QuesMeDemo.exeptions.NullFieldException;
 import QuesMeDemo.repositories.ComplaintRepository;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class ComplaintService {
 
     private final ComplaintRepository complaintRepository;
+    private final NotificationService notificationRepository;
 
     public Optional<ComplaintEntity> getById(Integer idComplaint) {return complaintRepository.findById(idComplaint);}
 
@@ -33,6 +35,8 @@ public class ComplaintService {
         ComplaintEntity complaintEntity = getById(id).get();
         complaintEntity.setStatus(status);
         save(complaintEntity);
+        NotificationEntity notificationEntity = new NotificationEntity("Жалоба рассмотрена", complaintEntity.getQuestion(), status);
+        notificationRepository.save(notificationEntity);
     }
 
     public void deleteByIdQuestion (Integer idQuestion) {
@@ -51,7 +55,7 @@ public class ComplaintService {
         List<ComplaintEntity> all = getAll();
 
         for (ComplaintEntity  complaint: all) {
-            if (complaint.getQuestion().getIdQuestion() == complaintEntity.getQuestion().getIdQuestion()) {
+            if (complaint.getQuestion().getIdQuestion() == complaintEntity.getQuestion().getIdQuestion() && complaint.getIdComplaint() != complaintEntity.getIdComplaint()) {
                 throw new ErrorFieldException("Вы уже подали жалобу на этот вопрос.");
             }
         }

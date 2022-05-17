@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Жалоба</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 align="center" class="title_label">Подать жалобу</h1>
+<form th:action="@{/complaintSave}" th:object="${complaint_form}" class="form_reg">
+  <fieldset>
+
+    <label th:text="${'Вопрос: ' + complaint_form.question.text}" class="form_label"></label>
+    <label class="form_label"> Причина подачи жалобы <textarea type="text" id="description" placeholder="Причина" rows="7" th:field="*{description}" class="type-form"></textarea></label>
+
+    <label><button type="submit" class="form_button">Отправить</button>
+      <button type="reset" class="form_button">Очистить</button></label>
+
+  </fieldset>
+</form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="UTF-8">
+<title>Ошибка</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 align="center" class="title_label">Что-то пошло не так...</h1>
+<form  class="form_reg">
+    <fieldset>
+        <label class="form_label">Произошла непредвиденная ошибка!</label>
+        <label class="form_label">Проверьте подключение к сети или обратитесь к авторам.</label>
+        <label th:text="${'Тип ошибки: ' + exception}"class="form_label">Тип ошибки:</label>
+        <label th:text="${'Текст ошибки: ' + message}"class="form_label">Тип ошибки:</label>
+    </fieldset>
+</form>
+</body>
+</html>

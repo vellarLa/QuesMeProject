@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<div class="backgroundClassMain">
+  <head>
+    <meta charset="UTF-8" />
+    <title>myFollowers</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <div class="top-menu">
+      <div class="navbar-logo">
+        <img th:src="@{/img/logo.png}"  width="200" />
+      </div>
+      <div class="menu-main">
+        <ul>
+          <li><a href="">Главная</a></li>
+          <li><a href="">Новости</a></li>
+          <li><a href="">Уведомления</a></li>
+          <li><a href="">Поиск</a></li>
+          <li><a href="">Выйти</a></li>
+        </ul>
+      </div>
+    </div>
+  </head>
+  <body>
+  <div class="followersClass">
+    <div class="my-followers">
+      <table>
+        <tr th:each ="user : ${followers}">
+          <td>
+            <div class="followerProfile">
+              <div class="followerProfile-div">
+                <div class="avatarQuestion">
+                  <img  class = "avatar-img-question" th:src="@{${user.getAvatar()}}" alt="Avatar"/>
+                </div>
+                <div class="followerProfile-head">
+                  <div class="followerProfile-nickname">
+                    <a href=""><span th:text="${user.getNickname()}"></span></a>
+                  </div>
+                  <div class="NameFollower"><span th:text="${user.getName()}"></span></div>
+                </div>
+                <div class = "subscriptFollower">
+                    <a id="UnSubscriptButton" class="subBut" th:href="@{'/profile/edit'}">
+                      <span>Отписаться</span>
+                    </a>
+                </div>
+              </div>
+
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="profileFollowerPage">
+      <div class="beautyH"><h5><span>Подписки</span></h5></div>
+      <div class="avatarProfileFollowers">
+        <img  class = "avatar-img" th:src="@{${avatarImagePath}}" alt="Avatar"/>
+      </div>
+      <div class="inf">
+        <h3 th:utext="${Nickname}"></h3>
+      </div>
+    </div>
+  </div>
+
+  </body>
+</div>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Уведомления</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 align="center" class="title_label">Уведомления</h1>
+<th:block th:each="notification: ${notifications}">
+
+  <form th:object="${notification}" th:action="@{'/notifications/doDelete/' + ${notification.idNotification}}" class="form_notif">
+    <fieldset>
+      <legend th:text="${notification.type}"></legend>
+      <button class = "button-Exit" type="submit">х</button>
+      <label th:text="${notification.content}" ></label>
+    </fieldset>
+  </form>
+
+</th:block>
+
+</body>
+</html>

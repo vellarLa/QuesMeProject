@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задать вопрос</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 align="center" class="title_label">Задать вопрос</h1>
+<form name='f' th:action="@{/processFormSave}" th:object="${question_form}" class="form_reg">
+    <fieldset>
+
+        <label class="form_label_list"> Получатель:
+            <input type="text" list="receiver" th:field="*{receiver.nickname}" class="type-form">
+            <datalist id="receiver">
+                <option th:each="receiver : ${receivers}"
+                        th:value="${receiver}"
+                        th:utext="${receiver}"/>
+            </datalist>
+        </label>
+
+        <tr>
+            <td> <label class="form_label_list"> Укажите категорию:</label></td>
+            <td>
+                <select id="dropDownList" th:field="*{category.title}" class="form_label_list">
+                    <option value=""> Без категории </option>
+                    <option th:each="option : ${options}"
+                            th:value="${option}"
+                            th:utext="${option}"/>
+                </select>
+            </td>
+        </tr>
+
+        <label class="form_label"> Текст вопроса: <textarea type="text" id="question" placeholder="Вопрос" rows="3" th:field="*{text}" class="type-form"></textarea></label>
+        <label class="form_label_list_anon"> Анонимно <input type="checkbox" id="anonymous" value="Y" th:field="*{anonymous}" class="custom-checkbox"></label>
+
+        <tr>
+            <td> <label><button type="submit" class="form_button">Подтвердить</button> </label></td>
+            <td> <label><button type="reset" class="form_button">Очистить</button></label> </td>
+        </tr>
+    </fieldset>
+</form>
+</body>
+</html>

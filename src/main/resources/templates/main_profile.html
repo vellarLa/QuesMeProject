@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<div class="backgroundClassMain">
+  <head>
+    <meta charset="UTF-8" />
+    <title>myProfile</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <div class="top-menu">
+      <div class="navbar-logo">
+        <img th:src="@{/img/logo.png}"  width="200" />
+      </div>
+      <div class="menu-main">
+        <ul>
+          <li><a href="">Главная</a></li>
+          <li><a href="">Новости</a></li>
+          <li><a href="">Уведомления</a></li>
+          <li><a href="">Поиск</a></li>
+          <li><a href="">Выйти</a></li>
+        </ul>
+      </div>
+    </div>
+  </head>
+  <body>
+  <div class="top-inf">
+    <div class="avatar">
+      <img  class = "avatar-img" th:src="@{${avatarImagePath}}" alt="Avatar"/>
+    </div>
+    <div class="description">
+      <h1 th:utext="${Name}"></h1>
+      <h3 th:utext="${Nickname}"></h3>
+      <h4 th:utext="${DescriptionUser}"></h4>
+      <a id="UpdateProfile" class="button" th:href="@{'/profile/edit'}">
+        <span>Редактировать профиль</span>
+      </a>
+    </div>
+    <div class="questionBlock">
+      <a id="questionNewButton" class="button" href=""><span>Задать вопрос</span></a>
+      <div class="questions-options">
+        <a class="myQuestions" href=""><span th:text="'Количество вопросов: ' + ${QuestionsNum}"></span></a>
+        <a class="myAnswers" href=""><span th:text="'Количество ответов: ' + ${AnswersNum}"></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="question-block">
+    <div class="friends">
+        <a class="followers" th:href="@{'/profile/followers'}"> <span th:text="'Подписчики ' + ${FollowersNum}"></span></a>
+        <a class="subscriptions" th:href="@{'/profile/subscriptions'}"> <span th:text="'Подписки ' + ${SubscriptionsNum}"></span> </a>
+    </div>
+
+    <div class="my-questions">
+      <table>
+        <tr th:each ="question : ${questions}">
+          <td>
+            <div class="questionProfile">
+              <div class="questionProfile-head">
+                <div class="avatarQuestion">
+                  <img  class = "avatar-img-question" th:src="@{${question.getSender().getAvatar()}}" alt="Avatar"/>
+                </div>
+                <div class="questionProfile-nickname">
+                  <a th:href="@{'/profile/edit'}"><span th:text="${question.getSender().getNickname()}"></span></a>
+                </div>
+              </div>
+              <div class="questionProfile-body">
+                <h2 th:text="${question.getText()}"></h2>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+  </body>
+</div>
+</html>

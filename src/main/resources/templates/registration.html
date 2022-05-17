@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 align="center" class="title_label">Регистрация</h1>
+
+<form name='registration' th:action="@{/registrationPost}" th:object="${reg_form}" method="post" class="form_reg"
+      enctype="multipart/form-data" >
+    <fieldset>
+
+        <label class="form_label"> Имя <input type="text" id="name" placeholder="Имя" th:field="*{name}" class="type-form"></input></label>
+        <p class="form_label">Пол</p>
+        <label class="check_form_label">Мужской
+            <input type="radio" name="sex" value="M" th:field="*{sex}"/>
+            <span></span>
+        </label>
+        <label class="check_form_label">Женский
+            <input type="radio" name="sex" value="W" th:field="*{sex}" />
+            <span></span>
+        </label>
+        <label class="form_label">Аватар <input type="file" value="Выберите файл" class="input_form" name="photo" accept="image/png, image/jpeg"></input></label>
+        <label class="form_label"> Никнейм (должен содержать от 4 до 15 символов и быть уникальным) <input type="text" id="nickname" placeholder="Ник" th:field="*{nickname}" class="type-form"></input></label>
+        <label class="form_label"> Логин (должен содержать от 4 до 15 символов и быть уникальным) <input type="text" id="login" placeholder="Логин" th:field="*{login}" class="type-form"></input></label>
+        <label class="form_label"> Пароль (должен содержать от 5 до 15 символов) <input type="password" id="password" placeholder="Пароль" th:field="*{password}" class="type-form"></input></label>
+        <label class="form_label"> О себе <textarea type="text" id="description" placeholder="О себе" rows="7" th:field="*{description}" class="type-form"></textarea></label>
+        <label><button type="submit" class="form_button">Создать</button>
+            <button type="reset" class="form_button">Очистить</button></label>
+
+    </fieldset>
+</form>
+
+</body>
+</html>
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+    <h1>Добро пожаловать в QuesMe!</h1>
+    <form th:action="@{/registrationPost}"
+          th:object="${user}" method="post"
+          enctype="multipart/form-data">
+        <div>
+            <label>Nickname:</label>
+            <input type="text" th:field="*{nickname}" /><br/>
+            <label>Name:</label>
+            <input type="text" th:field="*{name}" /><br/>
+            <label>Описание:</label>
+            <input type="text" th:field="*{description}" /><br/>
+            <label>Пол:</label>
+            <input type="text" th:field="*{sex}" /><br/>
+            <label>Логин:</label>
+            <input type="text" th:field="*{login}" /><br/>
+            <label>Пароль:</label>
+            <input type="text" th:field="*{password}" /><br/>
+            <label>Photos:</label>
+            <input type="file" name="photo" accept="image/png, image/jpeg"/>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>-->
