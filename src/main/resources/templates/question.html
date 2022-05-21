@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/%22%3E">
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Задать вопрос</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" >
+<div class="backgroundClassMain">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Задать вопрос</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+        <div class="top-menu">
+            <div class="navbar-logo">
+                <img th:src="@{/img/logo.png}"  width="200" />
+            </div>
+            <div class="menu-main">
+                <ul>
+                    <li><a th:href="@{'/profile'}">Главная</a></li>
+                    <li><a th:href="@{'/news'}">Новости</a></li>
+                    <li><a th:href="@{'/notification'}">Уведомления</a></li>
+                    <li><a th:href="@{'/'}">Выйти</a></li>
+                </ul>
+            </div>
+        </div>
+    </head>
 <body>
 <h1 align="center" class="title_label">Задать вопрос</h1>
 <form name='f' th:action="@{/processFormSave}" th:object="${question_form}" class="form_reg">
@@ -42,4 +55,6 @@
     </fieldset>
 </form>
 </body>
+</div>
+
 </html>

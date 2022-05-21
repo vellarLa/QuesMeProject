@@ -61,12 +61,19 @@ public class WebController {
         for (UserEntity entity : all) {
             if (welcome_form.getLogin().equals(entity.getLogin()) && welcome_form.getPassword().equals(entity.getPassword())){
                 idUser = entity.getIdUser();
-                return "redirect:/question";
+                return "redirect:/profile";
+            }
+        }
+        List<AdminEntity> allAdmin = adminService.getAll();
+        for (AdminEntity entity : allAdmin) {
+            if (welcome_form.getLogin().equals(entity.getLogin()) && welcome_form.getPassword().equals(entity.getPassword())){
+                idUser = entity.getIdAdmin();
+                System.out.println(idUser);
+                return "redirect:/profileAdmin";
             }
         }
         return "wrong_log_pas";
     }
-
     @RequestMapping(value = { "/registration" }, method = RequestMethod.GET)
     public String registration(Model model) throws NullFieldException, ErrorFieldException {
         UserEntity user = new UserEntity();
@@ -113,14 +120,19 @@ public class WebController {
             }
         }
         UserEntity current_user = userService.getById(idUser).get();
-        questionService.save(new QuestionEntity(current_user, ques.getReceiver(), ques.getCategory(), ques.getText(), ques.getAnonymous()));
-        return "redirect:/complaint";
+        //questionService.save(new QuestionEntity(current_user, ques.getReceiver(), ques.getCategory(), ques.getText(), ques.getAnonymous()));
+        return "redirect:/profile";
     }
     @RequestMapping(value = "/registrationPost", method = RequestMethod.POST)
     public String registrationPost(@ModelAttribute("user") UserEntity user, Model model, @RequestParam("photo") MultipartFile multipartFile) throws NullFieldException, ErrorFieldException, IOException {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        if (!fileName.isEmpty()) userService.updateAvatar(user, fileName);
-        user.updateAvatarImagePath();
+        if (!fileName.isEmpty()) {
+            userService.updateAvatar(user, fileName);
+            user.updateAvatarImagePath();
+        }
+        else {
+            userService.updateAvatar(user, "/img/avatar0.jpg");
+        }
         userService.save(user);
         idUser = user.getIdUser();
         if (!fileName.isEmpty()) {
@@ -132,21 +144,16 @@ public class WebController {
     }
     @RequestMapping(value = { "/profile" }, method = RequestMethod.GET)
     public String profile(Model model) throws NullFieldException, ErrorFieldException {
-        UserEntity user = userService.getById(1).get();
-        String nameUser ="Иван Иванов";
-        String description = "Люблю читать, петь и изучать языки.";
-        String subNum = "15";
-        String folNum = "10";
-        String ans = "5";
-        String ques = "7";
+        UserEntity user = userService.getById(idUser).get();
         /*for (QuestionEntity question : questions) {
             question.meLikedBool(user);
         }*/
+        model.addAttribute("categories", categoryService.getAll());
         questions = questionService.getAll();
         model.addAttribute("Name",user.getName());
         model.addAttribute("DescriptionUser", user.getDescription());
         model.addAttribute("Nickname", "@" + user.getNickname());
-        model.addAttribute("avatarImagePath", user.avatarImagePath);
+        model.addAttribute("avatarImagePath", user.getAvatar());
         model.addAttribute("SubscriptionsNum", subscriptionsService.MySubscriptionsNum(user.getIdUser()));
         model.addAttribute("FollowersNum", subscriptionsService.FollowersNum(user.getIdUser()));
         model.addAttribute("QuestionsNum", questionService.SentQuestionsNum(user.getIdUser()));
@@ -189,6 +196,34 @@ public class WebController {
         model.addAttribute("flag", flag);
         return "editProfile";
     }
+    @RequestMapping(value = { "/profile/newQuestions" }, method = RequestMethod.GET)
+    public String newQuestions (Model model) throws NullFieldException, ErrorFieldException {
+        questions = questionService.getAll();
+        UserEntity user = userService.getById(idUser).get();
+        model.addAttribute("Name",user.getName());
+        model.addAttribute("Nickname", "@" + user.getNickname());
+        model.addAttribute("avatarImagePath", user.getAvatar());
+        model.addAttribute("questions", questions);
+        return "newQuestions";
+    }
+    @RequestMapping(value = { "/news" }, method = RequestMethod.GET)
+    public String news (Model model) throws NullFieldException, ErrorFieldException {
+        questions = questionService.getAll();
+        UserEntity user = userService.getById(idUser).get();
+        model.addAttribute("Name",user.getName());
+        model.addAttribute("Nickname", "@" + user.getNickname());
+        model.addAttribute("avatarImagePath", user.getAvatar());
+        model.addAttribute("questions", questions);
+        return "news";
+    }
+    @RequestMapping(value = { "/editProfileAdminPost" }, method=RequestMethod.POST)
+    public String editProfileAdminPost( Model model) throws IOException, NullFieldException, ErrorFieldException {
+        return "redirect:/profileAdmin";
+    }
+    @RequestMapping(value = { "/editProfilePost" }, method=RequestMethod.POST)
+    public String editProfilePost( @RequestParam("photo") MultipartFile multipartFile, Model model) throws IOException, NullFieldException, ErrorFieldException {
+        return "redirect:/profile";
+    }
     @RequestMapping(value = { "/profileAdmin/edit" }, method = RequestMethod.GET)
     public String editProfileAdmin (Model model) throws NullFieldException, ErrorFieldException {
         AdminEntity admin = adminService.getById(1).get();
@@ -196,6 +231,7 @@ public class WebController {
         model.addAttribute("login", admin.getLogin());
         return "editProfileAdmin";
     }
+
     @RequestMapping(value = { "/profile/followers" }, method = RequestMethod.GET)
     public String myFollowers (Model model) throws NullFieldException, ErrorFieldException {
         UserEntity user = userService.getById(idUser).get();
@@ -205,7 +241,7 @@ public class WebController {
         model.addAttribute("Name",user.getName());
         model.addAttribute("DescriptionUser", user.getDescription());
         model.addAttribute("Nickname", "@" + user.getNickname());
-        model.addAttribute("avatarImagePath", user.avatarImagePath);
+        model.addAttribute("avatarImagePath", user.getAvatar());
         return "followers";
     }
     @RequestMapping(value = { "/profile/subscriptions" }, method = RequestMethod.GET)
@@ -217,12 +253,12 @@ public class WebController {
         model.addAttribute("Name",user.getName());
         model.addAttribute("DescriptionUser", user.getDescription());
         model.addAttribute("Nickname", "@" + user.getNickname());
-        model.addAttribute("avatarImagePath", user.avatarImagePath);
+        model.addAttribute("avatarImagePath", user.getAvatar());
         return "subscriptions";
     }
     @RequestMapping(value = { "/profileAdmin" }, method = RequestMethod.GET)
     public String adminProfile (Model model) throws NullFieldException, ErrorFieldException {
-        AdminEntity admin = adminService.getById(1).get();
+        AdminEntity admin = adminService.getById(idUser).get();
         CategoryEntity category = new CategoryEntity();
         model.addAttribute("FullName", admin.getFullName());
         model.addAttribute("category", category);
@@ -244,14 +280,14 @@ public class WebController {
                 System.out.println(entity);
                 userService.updatePasswordById(entity.getIdUser(), fog_form.getPassword());
                 System.out.println(entity);
-                return "redirect:/welcomepage";
+                return "redirect:/";
             }
         }
         return "wrong_log_pas";
     }
     @RequestMapping(value = { "/welcomeFormBack" }, method = RequestMethod.GET)
     public String welcomeFormBack() {
-        return "redirect:/welcomepage";
+        return "redirect:/";
         //return "redirect:/complaint";
     }
     @RequestMapping(value = {"/notification" }, method = RequestMethod.GET)
@@ -283,8 +319,8 @@ public class WebController {
     @RequestMapping(value = { "/complaintSave" }, method = RequestMethod.GET)
     public String complaintSave(@ModelAttribute(value="complaint_form") ComplaintEntity complaint_form) throws NullFieldException, ErrorFieldException {
         QuestionEntity question_form = questionService.getById(idQuestion).get();
-        complaintService.save(new ComplaintEntity(complaint_form.getDescription(), question_form));
-        return "redirect:/admin_list_complaint";
+        //complaintService.save(new ComplaintEntity(complaint_form.getDescription(), question_form));
+        return "redirect:/profile";
     }
     @RequestMapping(value = {"/admin_list_complaint"}, method = RequestMethod.GET)
     public String admin_list_complaint(Model model) {
@@ -309,5 +345,19 @@ public class WebController {
         }
         System.out.println(complaintService.getById(idComplaint));
         return "redirect:/admin_list_complaint";
+    }
+    @RequestMapping(value = {"/admin_complaint_stat" }, method = RequestMethod.GET)
+    public String admin_complaint_stat(Model model) {
+
+        List<ComplaintEntity> complaint = new ArrayList<>();
+        for (ComplaintEntity entity : complaintService.getAll()){
+            System.out.println(entity);
+            //if (entity.getStatus().equals("Принята") || entity.getStatus().equals("Отклонена")){
+            if(entity.getAdmin().getIdAdmin().equals(idUser)){
+                complaint.add(entity);
+            }
+        }
+        model.addAttribute("complaints", complaint);
+        return "admin_complaint_stat";
     }
 }

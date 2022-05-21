@@ -88,7 +88,7 @@ html {
 .inf_label{
      #display: inline-block;
      background-color: rgba(255, 255, 255, 0.7);
-     padding: 119px 50px 118px 50px;
+     padding: 142px 50px 135px 50px;
      position: absolute;
      top: 12.3%;
      right: 40%;
@@ -224,7 +224,7 @@ html {
     padding: 0px 60px;
     letter-spacing: 2px;
     font-size: 20px;
-    color: #606060;
+    color: #9d999d;
     font-family: 'Ubuntu Condensed', sans-serif;
     text-transform: uppercase;
     position: relative;
@@ -567,7 +567,7 @@ my-questions {
 .decor {
    position: relative;
    max-width: 600px;
-   margin: 50px auto 0;
+   margin: 40px auto 0;
    background: white;
    border-radius: 30px;
 }
@@ -855,7 +855,7 @@ my-questions {
     border-radius: 30px;
     width: 350px;
     padding: 50px;
-    margin: 20px 20px 0px 300px;
+    margin: 20px 20px 0px 250px;
     background: rgba(255,255,255,.8);
     letter-spacing: 2px;
     font-size: 20px;
@@ -900,7 +900,7 @@ my-questions {
   text-align: center;
   font-size: 16px;
   font-weight: bold;
-  color: #ffffff;
+  color: #f69a73;
   background: #f69a73;
   counter-increment: li;
   content: counter(li);
@@ -925,5 +925,15 @@ my-questions {
 .spisok li:hover:after {
   margin-left: 6px;
 }
-
-
+.question-block .categoryList{
+    margin: 15px 20px 0px 50px;
+}
+.categoryName {
+    margin: auto 0px;
+    margin-left:200px;
+    letter-spacing: 2px;
+        font-size: 20px;
+        color: #707981;
+        font-family: 'Ubuntu Condensed', sans-serif;
+        font-weight: 500;
+}

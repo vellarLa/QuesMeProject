@@ -90,8 +90,8 @@ public class InitiateUtils implements CommandLineRunner {
 
 
         UserEntity user2 = new UserEntity("gogolga", "Olga", "ooo", 'Ж',"dddd", "777777", "/user-photos/2/avatar0.jpg");
-        UserEntity user3 = new UserEntity("JavaRush", "Саша", "website", 'М',"JavaRush", "12345678", "");
-        UserEntity user4 = new UserEntity("Heroku", "Hero", "container", 'М',"postgres", "postgresql", "");
+        UserEntity user3 = new UserEntity("JavaRush", "Саша", "website", 'М',"JavaRush", "12345678", "/img/avatar1.jpg");
+        UserEntity user4 = new UserEntity("Heroku", "Hero", "container", 'М',"postgres", "postgresql", "/img/avatar2.jpg");
 
         userService.save(user2);
         userService.save(user3);
@@ -121,9 +121,12 @@ public class InitiateUtils implements CommandLineRunner {
 
         AdminEntity newAdmin1 = new AdminEntity("QuesMe", "Global Admin", "87654321");
         AdminEntity newAdmin2 = new AdminEntity("IntelliJ IDEA", "IDE2021", "202132");
+        AdminEntity newAdmin3 = new AdminEntity("IntelliJ IDEA", "ggggg", "111111");
+
 
         adminService.save(newAdmin1);
         adminService.save(newAdmin2);
+        adminService.save(newAdmin3);
 
 
         /*TemplateEngine templateEngine = new TemplateEngine();

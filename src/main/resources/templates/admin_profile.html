@@ -4,7 +4,7 @@
 <div class="backgroundClassMainAdmin">
     <head>
         <meta charset="UTF-8" />
-        <title>myAdminProfile</title>
+        <title>Профиль админа</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <div class="top-menu">
@@ -13,10 +13,8 @@
             </div>
             <div class="menu-main">
                 <ul>
-                    <li><a href="">Главная</a></li>
-                    <li><a href="">Статистика</a></li>
-                    <li><a href="">Пользователи</a></li>
-                    <li><a href="">Выйти</a></li>
+                    <li><a th:href="@{'/profileAdmin'}">Главная</a></li>
+                    <li><a th:href="@{'/'}">Выйти</a></li>
                 </ul>
             </div>
         </div>
@@ -34,8 +32,8 @@
             </a>
         </div>
             <div class="friends">
-                <a class="followers" th:href="@{'/profile/followers'}"> <span>Новые жалобы</span></a>
-                <a class="subscriptions" th:href="@{'/profile/subscriptions'}"> <span>Банк жалоб</span> </a>
+                <a class="followers" th:href="@{'/admin_list_complaint'}"> <span>Новые жалобы</span></a>
+                <a class="subscriptions" th:href="@{'/admin_complaint_stat'}"> <span>Банк жалоб</span> </a>
             </div>
     </div>
     <div class="category">
@@ -46,8 +44,8 @@
             </ul>
         </div>
         <div class="newCategory">
-            <form id="formCategory" class="decor" th:action="@{/editProfilePost}"
-                  th:object="${category}" method="post">
+            <form id="formCategory" class="decor" th:action="@{/profileAdmin}"
+                  th:object="${category}">
                 <div class="form-left-decoration"></div>
                 <div class="form-right-decoration"></div>
                 <div class="circle"></div>

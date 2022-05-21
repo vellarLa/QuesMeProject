@@ -82,7 +82,7 @@ public class UserEntity {
     }
     public void updateAvatarImagePath() {
         if (avatar != null && idUser != null)
-            avatarImagePath = "/user-photos/" + idUser + "/" + avatar;
+            avatar = "/user-photos/" + idUser + "/" + avatar;
     }
 
 }

@@ -1,11 +1,24 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" >
-<head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-    <title>EditProfile</title>
-</head>
+
+<div class="backgroundClassMainAdmin">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Редактировать профиль</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+        <div class="top-menu">
+            <div class="navbar-logo">
+                <img th:src="@{/img/logo.png}"  width="200" />
+            </div>
+            <div class="menu-main">
+                <ul>
+                    <li><a th:href="@{'/profileAdmin'}">Главная</a></li>
+                    <li><a th:href="@{'/'}">Выйти</a></li>
+                </ul>
+            </div>
+        </div>
+    </head>
 <body>
-<div class="backgroundClass">
     <form class="decor" th:action="@{/editProfileAdminPost}"
           th:object="${user}" method="post"
           enctype="multipart/form-data">
@@ -25,6 +38,7 @@
             <input type="submit" value="Редактировать профиль">
         </div>
     </form>
-</div>
 </body>
+</div>
+
 </html>
