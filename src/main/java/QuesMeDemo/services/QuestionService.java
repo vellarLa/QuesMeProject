@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -78,11 +79,11 @@ public class QuestionService {
             duplication = false;
     }
 
-    public List<QuestionEntity> getReceivedQuestions(int id) {
+    public List<QuestionEntity> getReceivedQuestionsNew(int id) {
         List<QuestionEntity> all = questionRepository.findAll();
         List<QuestionEntity> rez = new ArrayList<QuestionEntity>();
         for (QuestionEntity  question: all) {
-            if (question.getReceiver().getIdUser() == id) {
+            if (question.getReceiver().getIdUser() == id && Objects.equals(question.getStatus(), "Отправлен")) {
                 rez.add(question);
             }
         }
@@ -94,6 +95,16 @@ public class QuestionService {
         List<QuestionEntity> rez = new ArrayList<QuestionEntity>();
         for (QuestionEntity  question: all) {
             if (question.getSender().getIdUser() != id) {
+                rez.add(question);
+            }
+        }
+        return rez;
+    }
+    public List<QuestionEntity> getReceivedQuestionsAnswer(int id) {
+        List<QuestionEntity> all = questionRepository.findAll();
+        List<QuestionEntity> rez = new ArrayList<QuestionEntity>();
+        for (QuestionEntity  question: all) {
+            if (question.getReceiver().getIdUser() == id && Objects.equals(question.getStatus(), "Получен ответ")) {
                 rez.add(question);
             }
         }
@@ -128,4 +139,11 @@ public class QuestionService {
     /*public void saveAll(List<QuestionEntity> questions) {
         questionRepository.saveAll(questions);
     }*/
+    public List<QuestionEntity> checkAnonim (List<QuestionEntity> questions){
+        for (QuestionEntity  question: questions) {
+            if (question.getAnonymous() == 'Y') {
+            }
+        }
+        return questions;
+    }
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<div class="backgroundClassMain">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ответ на вопрос</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <div class="top-menu">
+      <div class="navbar-logo">
+        <img th:src="@{/img/logo.png}"  width="200" />
+      </div>
+      <div class="menu-main">
+        <ul>
+          <li><a th:href="@{'/profile'}">Главная</a></li>
+          <li><a th:href="@{'/news'}">Новости</a></li>
+          <li><a th:href="@{'/notification'}">Уведомления</a></li>
+          <li><a th:href="@{'/'}">Выйти</a></li>
+        </ul>
+      </div>
+    </div>
+  </head>
+  <body>
+  <h1 align="center" class="title_label">Ответ на вопрос</h1>
+  <form th:action="@{/AnswerQuestionPost}" th:object="${question}" class="form_reg" method="post">
+    <fieldset>
+
+      <label th:text="${'Вопрос: ' + question.text}" class="form_label"></label>
+      <label class="form_label"> Ответ на вопрос: <textarea type="text" id="description" placeholder="Ответ" rows="7" th:field="*{answer}" class="type-form"></textarea></label>
+
+      <label><button type="submit" class="form_button">Отправить</button>
+        <button type="reset" class="form_button">Очистить</button></label>
+
+    </fieldset>
+  </form>
+  </body>
+</div>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<div class="backgroundClassMain">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Профиль</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+        <div class="top-menu">
+            <div class="navbar-logo">
+                <img th:src="@{/img/logo.png}"  width="200" />
+            </div>
+            <div class="menu-main">
+                <ul>
+                    <li><a th:href="@{'/profile'}">Главная</a></li>
+                    <li><a th:href="@{'/news'}">Новости</a></li>
+                    <li><a th:href="@{'/notification'}">Уведомления</a></li>
+                    <li><a th:href="@{'/'}">Выйти</a></li>
+                </ul>
+            </div>
+        </div>
+    </head>
+    <body>
+    <div class="top-inf">
+        <div class="avatar">
+            <img  class = "avatar-img" th:src="@{${avatarImagePath}}" alt="Avatar"/>
+        </div>
+        <div class="description">
+            <h1 th:utext="${Name}"></h1>
+            <h3 th:utext="${Nickname}"></h3>
+            <h4 th:utext="${DescriptionUser}"></h4>
+            <a th:if="${subsc}" class="button" th:href="@{'/profile/edit'}">
+                <span>Отписаться</span>
+            </a>
+            <a th:unless="${subsc}" class="button" th:href="@{'/profile/edit'}">
+                <span>Подписаться</span>
+            </a>
+
+        </div>
+        <div class="questionBlock">
+            <a id="questionNewButton" class="button" th:href="@{'/question'}"><span>Задать вопрос</span></a>
+            <div class="questions-options">
+                <span class="myQuestions"   th:text="'Количество вопросов: ' + ${QuestionsNum}"></span>
+                <span class="myAnswers" th:text="'Количество ответов: ' + ${AnswersNum}"></span>
+            </div>
+        </div>
+    </div>
+    <div id = "GuestBlock" class="question-block">
+
+
+        <div class="my-questions">
+            <div class="followersClass">
+                <div class="my-followers">
+                    <table>
+                        <tr th:each ="question : ${questions}">
+                            <td>
+                                <div class="followerProfile">
+                                    <div class="followerProfile-div">
+                                        <div class="avatarQuestion" th:if="${question.anonymous} == 'N'">
+                                            <img  class = "avatar-img-question" th:src="@{${question.getSender().getAvatar()}}" alt="Avatar"/>
+                                        </div>
+                                        <div class="avatarQuestion" th:unless="${question.anonymous} == 'N'">
+                                            <img  class = "avatar-img-question" th:src="/img/avatar2.jpg" alt="Avatar"/>
+                                        </div>
+                                        <div class="questionProfile-head">
+                                            <div class="newQuestionProfile-head">
+                                                <div class="followerProfile-nickname">
+                                                    <div th:if="${question.anonymous} == 'N'">
+                                                        <a href=""><span th:text="${question.getSender().getNickname()}"></span></a>
+                                                    </div>
+                                                    <div th:unless="${question.anonymous} == 'N'">
+                                                        <span>Аноним</span>
+                                                    </div>
+                                                </div>
+                                                <div th:if="${question.anonymous} == 'N'" class="NameFollower"><span th:text="${question.getSender().getName()}"></span></div>
+                                            </div>
+                                            <div class = "subscriptFollower">
+                                                <div class="categoryName">
+                                                    <span th:text="${question.getCategory().getTitle()}"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="questionProfile-body">
+                                        <h2 th:text="${question.getText()}"></h2>
+                                        <div class="questionAnswer">
+                                            <span th:text="${question.getAnswer()}"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="categoryList" th:if="${flag}">
+            <h1>Категории:</h1>
+            <ul class="spisok" th:each ="category : ${categories}">
+                <li><span th:text="${category.getTitle()}"></span></li>
+            </ul>
+        </div>
+    </div>
+    </body>
+</div>
+</html>

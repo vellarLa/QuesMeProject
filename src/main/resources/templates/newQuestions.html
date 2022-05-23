@@ -27,19 +27,32 @@
                     <td>
                         <div class="followerProfile">
                             <div class="followerProfile-div">
-                                <div class="avatarQuestion">
+                                <div class="avatarQuestion" th:if="${question.anonymous} == 'N'">
                                     <img  class = "avatar-img-question" th:src="@{${question.getSender().getAvatar()}}" alt="Avatar"/>
                                 </div>
+                                <div class="avatarQuestion" th:unless="${question.anonymous} == 'N'">
+                                    <img  class = "avatar-img-question" src="/img/avatar2.jpg" alt="Avatar"/>
+                                </div>
                                 <div class="questionProfile-head">
-                                    <div class="followerProfile-head">
+                                    <div class="newQuestionProfile-head">
                                         <div class="followerProfile-nickname">
-                                            <a href=""><span th:text="${question.getSender().getNickname()}"></span></a>
+                                            <div th:if="${question.anonymous} == 'N'">
+                                                <a href=""><span th:text="${question.getSender().getNickname()}"></span></a>
+                                            </div>
+                                            <div th:unless="${question.anonymous} == 'N'">
+                                                <span>Аноним</span>
+                                            </div>
                                         </div>
-                                        <div class="NameFollower"><span th:text="${question.getSender().getName()}"></span></div>
+                                        <div th:if="${question.anonymous} == 'N'" class="NameFollower"><span th:text="${question.getSender().getName()}"></span></div>
                                     </div>
                                     <div class = "subscriptFollower">
-                                        <div>
-                                            <a id="UnSubscriptButton" class="subBut" th:href="@{'/complaint'}">
+                                        <div >
+                                            <a class="quesBut" th:href="@{'/deleteQuestion/' + ${question.getIdQuestion()}}">
+                                                <span>Удалить</span>
+                                            </a>
+                                        </div>
+                                        <div class="DelBut">
+                                            <a class="quesBut" th:href="@{'/complaint/'+ ${question.getIdQuestion()}}">
                                                 <span>Пожаловаться</span>
                                             </a>
                                         </div>
@@ -48,8 +61,14 @@
                             </div>
                             <div class="questionProfile-body">
                                 <h2 th:text="${question.getText()}"></h2>
+                                <span id="SpanCategory" th:text="'Категория: ' + ${question.getCategory().getTitle()}"></span>
                             </div>
 
+                            <div id = "AnsBut" class = "subscriptFollower">
+                                <a id="UnSubscriptButton" class="subBut" th:href="@{'/answer/' + ${question.getIdQuestion()}}">
+                                    <span>Ответить</span>
+                                </a>
+                            </div>
                         </div>
                     </td>
                 </tr>

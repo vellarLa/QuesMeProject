@@ -46,6 +46,9 @@ public class QuestionEntity {
     @Column(name = "text", length = 1000)
     private String text;
 
+    @Column(name = "answer", length = 1000)
+    private String answer;
+
     @Column(name = "anonymous")
     private Character anonymous;
 

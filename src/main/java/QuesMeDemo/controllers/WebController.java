@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hibernate.sql.InFragment.NULL;
+
 @Controller
 @RequiredArgsConstructor
 public class WebController {
@@ -120,15 +122,14 @@ public class WebController {
             }
         }
         UserEntity current_user = userService.getById(idUser).get();
-        //questionService.save(new QuestionEntity(current_user, ques.getReceiver(), ques.getCategory(), ques.getText(), ques.getAnonymous()));
+        questionService.save(new QuestionEntity(current_user, ques.getReceiver(), ques.getCategory(), ques.getText(), ques.getAnonymous()));
         return "redirect:/profile";
     }
     @RequestMapping(value = "/registrationPost", method = RequestMethod.POST)
     public String registrationPost(@ModelAttribute("user") UserEntity user, Model model, @RequestParam("photo") MultipartFile multipartFile) throws NullFieldException, ErrorFieldException, IOException {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         if (!fileName.isEmpty()) {
-            userService.updateAvatar(user, fileName);
-            user.updateAvatarImagePath();
+            userService.updateAvatar(user, user.makeAvatarImagePath(fileName));
         }
         else {
             userService.updateAvatar(user, "/img/avatar0.jpg");
@@ -148,8 +149,10 @@ public class WebController {
         /*for (QuestionEntity question : questions) {
             question.meLikedBool(user);
         }*/
+        boolean flag = true;
         model.addAttribute("categories", categoryService.getAll());
-        questions = questionService.getAll();
+        questions = questionService.getReceivedQuestionsAnswer(idUser);
+        if (questions.size() == 0) flag = false;
         model.addAttribute("Name",user.getName());
         model.addAttribute("DescriptionUser", user.getDescription());
         model.addAttribute("Nickname", "@" + user.getNickname());
@@ -160,14 +163,16 @@ public class WebController {
         model.addAttribute("AnswersNum", questionService.ReceivedQuestionsNum(user.getIdUser()));
         model.addAttribute("questions", questions);
         model.addAttribute("user", user);
+        model.addAttribute("flag", flag);
         return "main_profile";
     }
     @RequestMapping(value = { "/updateAvatar" }, method=RequestMethod.POST)
-    public String updateAvatarProfile(@RequestParam("photo") MultipartFile multipartFile, Model model) throws IOException, NullFieldException, ErrorFieldException {
-        UserEntity user = userService.getById(idUser).get();
+    public String updateAvatarProfile(@ModelAttribute("user") UserEntity user, @RequestParam("photo") MultipartFile multipartFile) throws IOException, NullFieldException, ErrorFieldException {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        if (!fileName.isEmpty()) userService.updateAvatar(user, fileName);
-        user.updateAvatarImagePath();
+        if (!fileName.isEmpty()) {
+            userService.updateAvatar(user, fileName);
+            user.updateAvatarImagePath();
+        }
         userService.save(user);
         if (!fileName.isEmpty()) {
             String uploadDir = "user-photos/" + user.getIdUser();
@@ -187,6 +192,59 @@ public class WebController {
 
         return "redirect:" + components.getPath();
     }
+    @RequestMapping(value = { "/answer/{idQuestionAns}" }, method = RequestMethod.GET)
+    public String answerQuestion (@PathVariable(name = "idQuestionAns") int idQuestionAns, Model model) throws NullFieldException, ErrorFieldException {
+        QuestionEntity question = questionService.getById(idQuestionAns).get();
+        idQuestion = idQuestionAns;
+        model.addAttribute("question",question);
+        return "answerQuestion";
+    }
+    @RequestMapping(value = { "/deleteQuestion/{idQuestionAns}" }, method = RequestMethod.GET)
+    public String deleteQuestion (@PathVariable(name = "idQuestionDel") int idQuestionDel, Model model) throws NullFieldException, ErrorFieldException {
+        questionService.delById(idQuestionDel);
+        return "redirect:/profile/newQuestions";
+    }
+    @RequestMapping(value = {"/complaint/{idQuestionCom}" }, method = RequestMethod.GET)
+    public String complaint(@PathVariable(name = "idQuestionCom") int idQuestionCom,Model model) throws NullFieldException, ErrorFieldException {
+        QuestionEntity question_form = questionService.getById(idQuestionCom).get();
+        questionService.updateStatus(idQuestionCom, "Получена жалоба");
+        ComplaintEntity complaint_form = new ComplaintEntity("", question_form);
+        model.addAttribute("complaint_form", complaint_form);
+        return "complaint";
+    }
+    @RequestMapping(value = { "/profileGuest/{idGuest}" }, method = RequestMethod.GET)
+    public String guest (@PathVariable(name = "idGuest") int idGuest, Model model) throws NullFieldException, ErrorFieldException {
+        UserEntity user = userService.getById(idGuest).get();
+        /*for (QuestionEntity question : questions) {
+            question.meLikedBool(user);
+        }*/
+        boolean flag = true;
+        model.addAttribute("categories", categoryService.getAll());
+        questions = questionService.getReceivedQuestionsAnswer(idGuest);
+        if (questions.size() == 0) flag = false;
+        model.addAttribute("Name",user.getName());
+        model.addAttribute("DescriptionUser", user.getDescription());
+        model.addAttribute("Nickname", "@" + user.getNickname());
+        model.addAttribute("avatarImagePath", user.getAvatar());
+        model.addAttribute("SubscriptionsNum", subscriptionsService.MySubscriptionsNum(user.getIdUser()));
+        model.addAttribute("FollowersNum", subscriptionsService.FollowersNum(user.getIdUser()));
+        model.addAttribute("QuestionsNum", questionService.SentQuestionsNum(user.getIdUser()));
+        model.addAttribute("AnswersNum", questionService.ReceivedQuestionsNum(user.getIdUser()));
+        model.addAttribute("questions", questions);
+        model.addAttribute("user", user);
+        model.addAttribute("flag", flag);
+        model.addAttribute("subsc", subscriptionsService.isMySubscription(idUser, idGuest));
+        return "userGuestProfile";
+    }
+    @RequestMapping(value = { "/AnswerQuestionPost" }, method=RequestMethod.POST)
+    public String answerQuestionPost(@ModelAttribute("question") QuestionEntity question, Model model) throws IOException, NullFieldException, ErrorFieldException {
+        if (question.getAnswer() == NULL) return "redirect:/answer/" + question.getIdQuestion();
+        QuestionEntity questionBase = questionService.getById(idQuestion).get();
+        questionBase.setAnswer(question.getAnswer());
+        questionBase.setStatus("Получен ответ");
+        questionService.save(questionBase);
+        return "redirect:/profile/newQuestions";
+    }
     @RequestMapping(value = { "/profile/edit" }, method = RequestMethod.GET)
     public String editProfile (Model model) throws NullFieldException, ErrorFieldException {
         boolean flag = false;
@@ -198,7 +256,7 @@ public class WebController {
     }
     @RequestMapping(value = { "/profile/newQuestions" }, method = RequestMethod.GET)
     public String newQuestions (Model model) throws NullFieldException, ErrorFieldException {
-        questions = questionService.getAll();
+        questions = questionService.getReceivedQuestionsNew(idUser);
         UserEntity user = userService.getById(idUser).get();
         model.addAttribute("Name",user.getName());
         model.addAttribute("Nickname", "@" + user.getNickname());
@@ -221,7 +279,16 @@ public class WebController {
         return "redirect:/profileAdmin";
     }
     @RequestMapping(value = { "/editProfilePost" }, method=RequestMethod.POST)
-    public String editProfilePost( @RequestParam("photo") MultipartFile multipartFile, Model model) throws IOException, NullFieldException, ErrorFieldException {
+    public String editProfilePost( @ModelAttribute("user") UserEntity user, @RequestParam("photo") MultipartFile multipartFile, Model model) throws IOException, NullFieldException, ErrorFieldException {
+         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+         user = userService.updateUser(user, idUser);
+         if (!fileName.isEmpty()) {
+             userService.updateAvatar(user, user.makeAvatarImagePath(fileName));
+         }
+        if (!fileName.isEmpty()) {
+            String uploadDir = "user-photos/" + user.getIdUser();
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        }
         return "redirect:/profile";
     }
     @RequestMapping(value = { "/profileAdmin/edit" }, method = RequestMethod.GET)
@@ -307,15 +374,7 @@ public class WebController {
         notificationService.delById(idNotification);
         return "redirect:/notification";
     }
-    @RequestMapping(value = {"/complaint" }, method = RequestMethod.GET)
-    public String complaint(Model model) {
-        //String textt = question_form.getText();
-        //model.addAttribute("textt", textt);
-        QuestionEntity question_form = questionService.getById(idQuestion).get();
-        ComplaintEntity complaint_form = new ComplaintEntity("", question_form);
-        model.addAttribute("complaint_form", complaint_form);
-        return "complaint";
-    }
+
     @RequestMapping(value = { "/complaintSave" }, method = RequestMethod.GET)
     public String complaintSave(@ModelAttribute(value="complaint_form") ComplaintEntity complaint_form) throws NullFieldException, ErrorFieldException {
         QuestionEntity question_form = questionService.getById(idQuestion).get();

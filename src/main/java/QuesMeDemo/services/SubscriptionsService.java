@@ -87,6 +87,15 @@ public class SubscriptionsService {
         }
         return num;
     }
+    public boolean isMySubscription (Integer idUser, Integer idGuest) {
+        List<UserEntity> all = MySubscriptions(idUser);
+        for (UserEntity subscript : all) {
+            if (subscript.getIdUser() == idGuest) {
+                return true;
+            }
+        }
+        return false;
+    }
     /*public void saveAll(List<SubscriptionsEntity> subscriptions) {
         subscriptionsRepository.saveAll(subscriptions);
     }*/

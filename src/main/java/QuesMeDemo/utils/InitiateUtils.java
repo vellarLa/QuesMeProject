@@ -82,16 +82,16 @@ public class InitiateUtils implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
-        CategoryEntity newCategory2 = new CategoryEntity("Личное");
+        /*CategoryEntity newCategory2 = new CategoryEntity("Личное");
         CategoryEntity newCategory3 = new CategoryEntity("Интересы");
 
         categoryService.save(newCategory2);
         categoryService.save(newCategory3);
 
 
-        UserEntity user2 = new UserEntity("gogolga", "Olga", "ooo", 'Ж',"dddd", "777777", "/user-photos/2/avatar0.jpg");
-        UserEntity user3 = new UserEntity("JavaRush", "Саша", "website", 'М',"JavaRush", "12345678", "/img/avatar1.jpg");
-        UserEntity user4 = new UserEntity("Heroku", "Hero", "container", 'М',"postgres", "postgresql", "/img/avatar2.jpg");
+        UserEntity user2 = new UserEntity("gogolga", "Olga", "ooo", 'W',"dddd", "777777", "/user-photos/2/avatar0.jpg");
+        UserEntity user3 = new UserEntity("JavaRush", "Саша", "website", 'M',"JavaRush", "12345678", "/img/avatar1.jpg");
+        UserEntity user4 = new UserEntity("Heroku", "Hero", "container", 'M',"postgres", "postgresql", "/img/avatar2.jpg");
 
         userService.save(user2);
         userService.save(user3);

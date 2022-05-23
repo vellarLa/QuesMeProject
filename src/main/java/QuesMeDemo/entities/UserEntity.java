@@ -84,6 +84,8 @@ public class UserEntity {
         if (avatar != null && idUser != null)
             avatar = "/user-photos/" + idUser + "/" + avatar;
     }
-
+    public String makeAvatarImagePath(String fileName) {
+        return  "/user-photos/" + idUser + "/" + fileName;
+    }
 }
 

@@ -14,6 +14,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
+import static ch.qos.logback.core.joran.action.ActionConst.NULL;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -146,6 +148,16 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public UserEntity updateUser (UserEntity user, Integer id) throws NullFieldException, ErrorFieldException {
+        UserEntity userBase = getById(id).get();
+        if (user.getName() != userBase.getName() && user.getName() != NULL) userBase.setName(user.getName());
+        if (user.getDescription() != userBase.getDescription() && user.getDescription() != NULL) userBase.setDescription(user.getDescription());
+        if (user.getNickname() != userBase.getNickname() && user.getNickname() != NULL) userBase.setNickname(user.getNickname());
+        if (user.getSex() != userBase.getSex()) userBase.setSex(user.getSex());
+        if (user.getPassword() != userBase.getPassword() && user.getPassword() != NULL) userBase.setPassword(user.getPassword());
+        save(userBase);
+        return userBase;
+    }
 
     /*public void saveAll(List<UserEntity> questions) {
         userRepository.saveAll(questions);

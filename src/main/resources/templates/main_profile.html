@@ -41,44 +41,60 @@
       </div>
     </div>
   </div>
-  <div class="question-block">
+  <div  class="question-block">
     <div class="friends">
-        <a class="followers" th:href="@{'/profile/followers'}"> <span th:text="'Подписчики ' + ${FollowersNum}"></span></a>
-        <a class="subscriptions" th:href="@{'/profile/subscriptions'}"> <span th:text="'Подписки ' + ${SubscriptionsNum}"></span> </a>
+      <a class="followers" th:href="@{'/profile/followers'}"> <span th:text="'Подписчики ' + ${FollowersNum}"></span></a>
+      <a class="subscriptions" th:href="@{'/profile/subscriptions'}"> <span th:text="'Подписки ' + ${SubscriptionsNum}"></span> </a>
     </div>
 
     <div class="my-questions">
-      <table>
-        <tr th:each ="question : ${questions}">
-          <td>
-            <div class="questionProfile">
-              <div class="followerProfile-div">
-              <div class="avatarQuestion">
-                <img  class = "avatar-img-question" th:src="@{${question.getSender().getAvatar()}}" alt="Avatar"/>
-              </div>
-              <div class="questionProfile-head">
-                <div class="followerProfile-head">
-                  <div class="followerProfile-nickname">
-                    <a href=""><span th:text="${question.getSender().getNickname()}"></span></a>
+      <div class="followersClass">
+        <div class="my-followers">
+          <table>
+            <tr th:each ="question : ${questions}">
+              <td>
+                <div class="followerProfile">
+                  <div class="followerProfile-div">
+                    <div class="avatarQuestion" th:if="${question.anonymous} == 'N'">
+                      <img  class = "avatar-img-question" th:src="@{${question.getSender().getAvatar()}}" alt="Avatar"/>
+                    </div>
+                    <div class="avatarQuestion" th:unless="${question.anonymous} == 'N'">
+                      <img  class = "avatar-img-question" th:src="/img/avatar2.jpg" alt="Avatar"/>
+                    </div>
+                    <div class="questionProfile-head">
+                      <div class="newQuestionProfile-head">
+                        <div class="followerProfile-nickname">
+                          <div th:if="${question.anonymous} == 'N'">
+                            <a th:href="@{'/profileGuest/' + ${question.getSender().getIdUser()}}"><span th:text="${question.getSender().getNickname()}"></span></a>
+                          </div>
+                          <div th:unless="${question.anonymous} == 'N'">
+                              <span>Аноним</span>
+                          </div>
+                        </div>
+                        <div th:if="${question.anonymous} == 'N'" class="NameFollower"><span th:text="${question.getSender().getName()}"></span></div>
+                      </div>
+                      <div class = "subscriptFollower">
+                        <div class="categoryName">
+                          <span th:text="${question.getCategory().getTitle()}"></span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="NameFollower"><span th:text="${question.getSender().getName()}"></span></div>
-                </div>
-                <div class="categoryName">
-                  <span th:text="${question.getCategory().getTitle()}"></span>
-                </div>
-              </div>
-              </div>
-              <div class="questionProfile-body">
-                <h2 th:text="${question.getText()}"></h2>
-              </div>
+                  <div class="questionProfile-body">
+                    <h2 th:text="${question.getText()}"></h2>
+                    <div class="questionAnswer">
+                      <span th:text="${question.getAnswer()}"></span>
+                    </div>
+                  </div>
 
-            </div>
-          </td>
-        </tr>
-      </table>
-
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
-    <div class="categoryList">
+    <div class="categoryList" th:if="${flag}">
       <h1>Категории:</h1>
       <ul class="spisok" th:each ="category : ${categories}">
         <li><span th:text="${category.getTitle()}"></span></li>
