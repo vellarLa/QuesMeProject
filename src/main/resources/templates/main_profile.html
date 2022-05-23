@@ -36,13 +36,20 @@
     <div class="questionBlock">
       <a id="questionNewButton" class="button" th:href="@{'/question'}"><span>Создать новый вопрос</span></a>
       <div class="questions-options">
-        <a class="myQuestions" th:href="@{'/profile/newQuestions'}"><span>Новые вопросы:</span></a>
-        <a class="myAnswers" th:href="@{'/profile/newQuestions'}"><span th:text="'Количество ответов: ' + ${AnswersNum}"></span></a>
+        <a class="myQuestions" th:href="@{'/profile/newQuestions'}"><span span th:text="'Новые вопросы: ' + ${NewAnswersNum}"></span></a>
+        <a class="myAnswers" th:href="@{'/myQues'}"><span th:text="'Количество ответов: ' + ${AnswersNum}"></span></a>
       </div>
     </div>
   </div>
   <div  class="question-block">
     <div class="friends">
+      <div class="my-questions">
+        <input type="text" list="allUser" placeholder="Поиск" onchange="location = this.value;" autocomplete="off" class="type-form">
+        <datalist id="allUser" >
+          <option th:each="allUser : ${allUsers}" th:value="${allUser.nickname}" >
+          </option>
+        </datalist>
+      </div>
       <a class="followers" th:href="@{'/profile/followers'}"> <span th:text="'Подписчики ' + ${FollowersNum}"></span></a>
       <a class="subscriptions" th:href="@{'/profile/subscriptions'}"> <span th:text="'Подписки ' + ${SubscriptionsNum}"></span> </a>
     </div>
@@ -59,7 +66,7 @@
                       <img  class = "avatar-img-question" th:src="@{${question.getSender().getAvatar()}}" alt="Avatar"/>
                     </div>
                     <div class="avatarQuestion" th:unless="${question.anonymous} == 'N'">
-                      <img  class = "avatar-img-question" th:src="/img/avatar2.jpg" alt="Avatar"/>
+                      <img  class = "avatar-img-question" src="/img/avatar2.jpg" alt="Avatar"/>
                     </div>
                     <div class="questionProfile-head">
                       <div class="newQuestionProfile-head">
@@ -97,7 +104,7 @@
     <div class="categoryList" th:if="${flag}">
       <h1>Категории:</h1>
       <ul class="spisok" th:each ="category : ${categories}">
-        <li><span th:text="${category.getTitle()}"></span></li>
+        <li><a th:href="@{'/profile/sortCategory/'  + ${category.getIdCategory()}}"><span th:text="${category.getTitle()}"></span></a></li>
       </ul>
     </div>
   </div>

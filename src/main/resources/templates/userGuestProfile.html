@@ -29,16 +29,16 @@
             <h1 th:utext="${Name}"></h1>
             <h3 th:utext="${Nickname}"></h3>
             <h4 th:utext="${DescriptionUser}"></h4>
-            <a th:if="${subsc}" class="button" th:href="@{'/profile/edit'}">
+            <a th:if="${subsc}" class="button" th:href="@{'/profile/DelSubscript/' + ${user.getIdUser()}}">
                 <span>Отписаться</span>
             </a>
-            <a th:unless="${subsc}" class="button" th:href="@{'/profile/edit'}">
+            <a th:unless="${subsc}" class="button" th:href="@{'/profile/MakeSubscript/' + ${user.getIdUser()}}">
                 <span>Подписаться</span>
             </a>
 
         </div>
         <div class="questionBlock">
-            <a id="questionNewButton" class="button" th:href="@{'/question'}"><span>Задать вопрос</span></a>
+            <a id="questionNewButton" class="button" th:href="@{'/questionTrue'}"><span>Задать вопрос</span></a>
             <div class="questions-options">
                 <span class="myQuestions"   th:text="'Количество вопросов: ' + ${QuestionsNum}"></span>
                 <span class="myAnswers" th:text="'Количество ответов: ' + ${AnswersNum}"></span>
@@ -60,7 +60,7 @@
                                             <img  class = "avatar-img-question" th:src="@{${question.getSender().getAvatar()}}" alt="Avatar"/>
                                         </div>
                                         <div class="avatarQuestion" th:unless="${question.anonymous} == 'N'">
-                                            <img  class = "avatar-img-question" th:src="/img/avatar2.jpg" alt="Avatar"/>
+                                            <img  class = "avatar-img-question" src="/img/avatar2.jpg" alt="Avatar"/>
                                         </div>
                                         <div class="questionProfile-head">
                                             <div class="newQuestionProfile-head">
@@ -98,7 +98,7 @@
         <div class="categoryList" th:if="${flag}">
             <h1>Категории:</h1>
             <ul class="spisok" th:each ="category : ${categories}">
-                <li><span th:text="${category.getTitle()}"></span></li>
+                <li><a th:href="@{'/profile/sortGuestCategory/'  + ${category.getIdCategory()}}"><span th:text="${category.getTitle()}"></span></a></li>
             </ul>
         </div>
     </div>

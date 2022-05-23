@@ -1,6 +1,7 @@
 package QuesMeDemo.services;
 
 import QuesMeDemo.entities.AdminEntity;
+import QuesMeDemo.entities.QuestionEntity;
 import QuesMeDemo.exeptions.ErrorFieldException;
 import QuesMeDemo.exeptions.NullFieldException;
 import QuesMeDemo.repositories.CategoryRepository;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import QuesMeDemo.entities.CategoryEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,5 +45,14 @@ public class CategoryService {
 
     public void saveAll(List<CategoryEntity> categories) {
         categoryRepository.saveAll(categories);
+    }
+    public List<QuestionEntity> sort (List<QuestionEntity> questions, Integer idCategory) {
+        List<QuestionEntity> rez = new ArrayList<QuestionEntity>();
+        for (QuestionEntity question: questions) {
+            if (question.getCategory().getIdCategory() == idCategory) {
+                rez.add(question);
+            }
+        }
+        return rez;
     }
 }

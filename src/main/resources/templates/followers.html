@@ -32,18 +32,18 @@
                                 </div>
                                 <div class="followerProfile-head">
                                     <div class="followerProfile-nickname">
-                                        <a href=""><span th:text="${user.getNickname()}"></span></a>
+                                        <a th:href="@{'/profileGuest/' + ${user.getIdUser()}}"><span th:text="${user.getNickname()}"></span></a>
                                     </div>
                                     <div class="NameFollower"><span th:text="${user.getName()}"></span></div>
                                 </div>
                                 <div class = "subscriptFollower">
-                                    <div th:if="${condition}">
-                                        <a id="UnSubscriptButton" class="subBut" th:href="@{'/profile/followers'}">
+                                    <div th:if="${user.subscript}">
+                                        <a id="UnSubscriptButton" class="subBut" th:href="@{'/profile/DelSubscript/' + ${user.getIdUser()}}">
                                             <span>Отписаться</span>
                                         </a>
                                     </div>
-                                    <div th:unless="${condition}">
-                                        <a id="SubscriptButton" class="subBut" th:href="@{'/profile/followers'}">
+                                    <div th:unless="${user.subscript}">
+                                        <a id="SubscriptButton" class="subBut" th:href="@{'/profile/MakeSubscript/' + ${user.getIdUser()}}">
                                             <span>Подписаться</span>
                                         </a>
                                     </div>

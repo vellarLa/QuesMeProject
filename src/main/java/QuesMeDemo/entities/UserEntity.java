@@ -52,7 +52,7 @@ public class UserEntity {
 
     public String avatarImagePath;
 
-
+    public boolean subscript;
     /*@Transient
     public String getAvatarImagePath() {
         if (avatar == null || idUser == null) return null;
@@ -64,6 +64,7 @@ public class UserEntity {
         this.active = 'А';
         this.ban = 0;
         this.sex = 'M';
+        subscript = false;
     }
 
     public UserEntity (String nickname, String name, String description, Character sex, String login, String password, String avatar) {
@@ -79,6 +80,7 @@ public class UserEntity {
         if (avatar != null) {
             this.avatar = avatar;
         }
+        subscript = false;
     }
     public void updateAvatarImagePath() {
         if (avatar != null && idUser != null)
@@ -86,6 +88,9 @@ public class UserEntity {
     }
     public String makeAvatarImagePath(String fileName) {
         return  "/user-photos/" + idUser + "/" + fileName;
+    }
+    public void setSubscript(boolean rez) {
+        subscript = rez;
     }
 }
 

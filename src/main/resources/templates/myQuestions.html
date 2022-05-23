@@ -3,7 +3,7 @@
 <div class="backgroundClassMain">
   <head>
     <meta charset="UTF-8" />
-    <title>Подписки</title>
+    <title>Мои вопросы</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <div class="top-menu">
       <div class="navbar-logo">
@@ -23,33 +23,35 @@
   <div class="followersClass">
     <div class="my-followers">
       <table>
-        <tr th:each ="user : ${followers}">
+        <tr th:each ="question : ${questions}">
           <td>
             <div class="followerProfile">
+              <div class =  "BeforeQuestion">
+                <a th:href="@{'/profileGuest/' + ${question.getReceiver().getIdUser()}}"><span th:text="'Вопрос для ' +${question.getReceiver().getNickname()}"></span></a>
+              </div>
               <div class="followerProfile-div">
-                <div class="avatarQuestion">
-                  <img  class = "avatar-img-question" th:src="@{${user.getAvatar()}}" alt="Avatar"/>
-                </div>
-                <div class="followerProfile-head">
-                  <div class="followerProfile-nickname">
-                    <a th:href="@{'/profileGuest/' + ${user.getIdUser()}}"><span th:text="${user.getNickname()}"></span></a>
+                <div class="questionProfile-head">
+                  <div class = "subscriptFollower">
+                    <div class="categoryName">
+                      <span th:text="${question.getStatus()}"></span>
+                    </div>
                   </div>
-                  <div class="NameFollower"><span th:text="${user.getName()}"></span></div>
-                </div>
-                <div class = "subscriptFollower">
-                    <a id="UnSubscriptButton" class="subBut" th:href="@{'/profile/DelSubscript/' + ${user.getIdUser()}}">
-                      <span>Отписаться</span>
-                    </a>
                 </div>
               </div>
-
+              <div class="questionProfile-body">
+                <h2 th:text="${question.getText()}"></h2>
+                <div th:if="${question.status} == 'Получен ответ'" class="questionAnswer">
+                  <span th:text="${question.getAnswer()}"></span>
+                </div>
+                <span id="SpanCategory" th:text="'Категория: ' + ${question.getCategory().getTitle()}"></span>
+              </div>
             </div>
           </td>
         </tr>
       </table>
     </div>
     <div class="profileFollowerPage">
-      <div class="beautyH"><h5><span>Подписки</span></h5></div>
+      <div class="beautyH"><h5><span>Мои вопросы</span></h5></div>
       <div class="avatarProfileFollowers">
         <img  class = "avatar-img" th:src="@{${avatarImagePath}}" alt="Avatar"/>
       </div>

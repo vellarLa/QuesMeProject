@@ -73,7 +73,12 @@ public class QuestionService {
         if (!duplication)
         {
             NotificationEntity notificationEntity = new NotificationEntity("Новый вопрос", questionEntity);
-            notificationRepository.save(notificationEntity);
+            for (NotificationEntity entity : notificationRepository.getAll()){
+                if(entity.getContent().equals(notificationEntity.getContent())&&entity.getOwner().equals(notificationEntity.getOwner()))
+                    duplication = true;
+            }
+            if(!duplication)
+                notificationRepository.save(notificationEntity);
         }
         else
             duplication = false;
@@ -94,7 +99,7 @@ public class QuestionService {
         List<QuestionEntity> all = questionRepository.findAll();
         List<QuestionEntity> rez = new ArrayList<QuestionEntity>();
         for (QuestionEntity  question: all) {
-            if (question.getSender().getIdUser() != id) {
+            if (question.getSender().getIdUser() == id) {
                 rez.add(question);
             }
         }
@@ -114,7 +119,7 @@ public class QuestionService {
         List<QuestionEntity> all = questionRepository.findAll();
         int num = 0;
         for (QuestionEntity  question: all) {
-            if (question.getReceiver().getIdUser() != id) {
+            if (question.getReceiver().getIdUser() == id) {
                 num++;
             }
         }
@@ -125,7 +130,7 @@ public class QuestionService {
         List<QuestionEntity> all = questionRepository.findAll();
         int num = 0;
         for (QuestionEntity  question: all) {
-            if (question.getSender().getIdUser() != id) {
+            if (question.getSender().getIdUser() == id) {
                 num++;
             }
         }
@@ -146,4 +151,19 @@ public class QuestionService {
         }
         return questions;
     }
+    public List<QuestionEntity> getNews (Integer idUser, List<UserEntity> subscript) {
+        List<QuestionEntity> all = questionRepository.findAll();;
+        List<QuestionEntity> rez = new ArrayList<QuestionEntity>();
+        for (QuestionEntity  question: all) {
+            if (Objects.equals(question.getStatus(), "Получен ответ")) {
+                for (UserEntity  user: subscript) {
+                    if (user.getIdUser()==question.getReceiver().getIdUser()) {
+                        rez.add(question);
+                    }
+                }
+            }
+        }
+        return rez;
+    }
+
 }

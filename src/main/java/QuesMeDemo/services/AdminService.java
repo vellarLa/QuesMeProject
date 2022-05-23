@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static ch.qos.logback.core.joran.action.ActionConst.NULL;
+
 @Service
 @RequiredArgsConstructor
 public class AdminService {
@@ -55,7 +57,13 @@ public class AdminService {
     public List<AdminEntity> getAll() {
         return adminRepository.findAll();
     }
-
+    public AdminEntity updateAdmin (AdminEntity user, Integer id) throws NullFieldException, ErrorFieldException {
+        AdminEntity userBase = getById(id).get();
+        if (user.getFullName() != userBase.getFullName() && user.getFullName() != NULL) userBase.setFullName(user.getFullName());
+        if (user.getPassword() != userBase.getPassword() && user.getPassword() != NULL) userBase.setPassword(user.getPassword());
+        save(userBase);
+        return userBase;
+    }
     /*public void saveAll(List<AdminEntity> admins) {
         adminRepository.saveAll(admins);
     }*/

@@ -931,6 +931,10 @@ display: inline-block;
   margin: 12px 0 12px 40px;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
+  color: #9d999d;
+}
+.spisok a{
+  color: #9d999d;
 }
 .spisok li:hover {
   background: #ffefd8;
@@ -1015,4 +1019,22 @@ margin-top: 10px;
 }
 #GuestBlock {
     margin-left: 300px;
+}
+.spisok a:link {
+    color: #9d999d;
+    text-decoration: none;
+}
+.BeforeQuestion a {
+    color: #fd1254;
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: 300;
+    border-radius: 20px;
+    padding: 15px 0px;
+    cursor: pointer;
+    font-weight: 800;
+    text-decoration: none;
+
+
 }

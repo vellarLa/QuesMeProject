@@ -3,7 +3,7 @@
 <div class="backgroundClassMain">
     <head>
         <meta charset="UTF-8" />
-        <title>Новый вопрос</title>
+        <title>Новые вопросы</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
         <div class="top-menu">
             <div class="navbar-logo">
@@ -37,7 +37,7 @@
                                     <div class="newQuestionProfile-head">
                                         <div class="followerProfile-nickname">
                                             <div th:if="${question.anonymous} == 'N'">
-                                                <a href=""><span th:text="${question.getSender().getNickname()}"></span></a>
+                                                <a th:href="@{'/profileGuest/' + ${question.getSender().getIdUser()}}"><span th:text="${question.getSender().getNickname()}"></span></a>
                                             </div>
                                             <div th:unless="${question.anonymous} == 'N'">
                                                 <span>Аноним</span>

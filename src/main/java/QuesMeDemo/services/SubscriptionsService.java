@@ -48,7 +48,7 @@ public class SubscriptionsService {
         List<SubscriptionsEntity> all = getAll();
         for (SubscriptionsEntity subscript : all) {
             if (subscript.getSubscript().getIdUser() == idUser) {
-                followers.add(subscript.getSubscript());
+                followers.add(subscript.getUser());
             }
         }
         return followers;
@@ -99,4 +99,20 @@ public class SubscriptionsService {
     /*public void saveAll(List<SubscriptionsEntity> subscriptions) {
         subscriptionsRepository.saveAll(subscriptions);
     }*/
+    public void delSubscript (Integer idUser, Integer idSubscript) {
+        List<SubscriptionsEntity> all = getAll();
+        for (SubscriptionsEntity subscript : all) {
+            if (subscript.getUser().getIdUser() == idUser && subscript.getSubscript().getIdUser() == idSubscript) {
+                delById(subscript.getIdSubscriptions());
+            }
+        }
+    }
+    public List<UserEntity> makeCondition(List<UserEntity> all, Integer idUser) {
+        for (UserEntity subscript : all) {
+            if (isMySubscription(idUser, subscript.getIdUser())) {
+                subscript.setSubscript(true);
+            }
+        }
+        return all;
+    }
 }

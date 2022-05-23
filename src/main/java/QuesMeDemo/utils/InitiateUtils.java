@@ -82,7 +82,7 @@ public class InitiateUtils implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
-        /*CategoryEntity newCategory2 = new CategoryEntity("Личное");
+        CategoryEntity newCategory2 = new CategoryEntity("Личное");
         CategoryEntity newCategory3 = new CategoryEntity("Интересы");
 
         categoryService.save(newCategory2);
@@ -110,14 +110,16 @@ public class InitiateUtils implements CommandLineRunner {
         ComplaintEntity newComplaint1 = new ComplaintEntity("Слишком личная информация", newQuestion1);
         ComplaintEntity newComplaint2 = new ComplaintEntity("Неприемлемый вопрос для всеобщего обозрения", newQuestion4);
 
-        complaintService.save(newComplaint1);
-        complaintService.save(newComplaint2);
+
 
         SubscriptionsEntity newSubscription1 = new SubscriptionsEntity(user3, user2);
-        SubscriptionsEntity newSubscription2 = new SubscriptionsEntity(user2, user4);
+        SubscriptionsEntity newSubscription3 = new SubscriptionsEntity(user2, user4);
+        SubscriptionsEntity newSubscription2 = new SubscriptionsEntity(user2, user3);
 
         subscriptionsService.save(newSubscription1);
         subscriptionsService.save(newSubscription2);
+        subscriptionsService.save(newSubscription3);
+
 
         AdminEntity newAdmin1 = new AdminEntity("QuesMe", "Global Admin", "87654321");
         AdminEntity newAdmin2 = new AdminEntity("IntelliJ IDEA", "IDE2021", "202132");

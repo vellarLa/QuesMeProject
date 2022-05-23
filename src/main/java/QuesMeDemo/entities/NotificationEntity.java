@@ -58,14 +58,11 @@ public class NotificationEntity {
         }
         if (type.equalsIgnoreCase("Ответ"))
         {
+            this.owner = question.getSender();
             if (question.getReceiver().getSex().equals('М'))
-                this.content = "Пользователь " + question.getReceiver() + " ответил на вопрос: " + question.getText();
+                this.content = "Пользователь " + question.getReceiver().getNickname() + " ответил на вопрос: " + question.getText();
             else
-                this.content = "Пользователь " + question.getReceiver() + " ответила на вопрос: " + question.getText();
-        }
-        if (type.equalsIgnoreCase("Жалоба на вопрос"))
-        {
-            this.content = "Была подана жалоба на вопрос '" + question.getText() + "'";
+                this.content = "Пользователь " + question.getReceiver().getNickname() + " ответила на вопрос: " + question.getText();
         }
     }
     public NotificationEntity(String type, QuestionEntity question, String complaintStatus)

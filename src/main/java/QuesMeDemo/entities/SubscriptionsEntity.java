@@ -22,12 +22,12 @@ public class SubscriptionsEntity {
     @GeneratedValue(generator = "generator")
     private Integer idSubscriptions;
 
-    @ManyToOne(cascade={CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(cascade={CascadeType.MERGE})
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_user")
     private UserEntity user;
 
-    @ManyToOne(cascade={CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(cascade={CascadeType.MERGE})
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_subscript")
     private UserEntity subscript;
