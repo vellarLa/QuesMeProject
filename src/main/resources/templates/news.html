@@ -14,7 +14,7 @@
           <li><a th:href="@{'/profile'}">Главная</a></li>
           <li><a th:href="@{'/news'}">Новости</a></li>
           <li><a th:href="@{'/notification'}">Уведомления</a></li>
-          <li><a th:href="@{'/'}">Выйти</a></li>
+          <li><a th:href="@{'/welcomeFormBack'}">Выйти</a></li>
         </ul>
       </div>
     </div>
@@ -47,17 +47,6 @@
                       </div>
                     </div>
                     <div th:if="${question.anonymous} == 'N'" class="NameFollower"><span th:text="${question.getSender().getName()}"></span></div>
-                  </div>
-                  <div th:if="${question.anonymous} == 'N'" class = "subscriptFollower">
-                    <div>
-                      <div class = "subscriptFollower">
-                        <div>
-                          <a id="UnSubscriptButton" class="subBut" th:href="@{'/news'}">
-                            <span>Отписаться</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

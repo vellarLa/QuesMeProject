@@ -15,7 +15,7 @@
           <li><a th:href="@{'/profile'}">Главная</a></li>
           <li><a th:href="@{'/news'}">Новости</a></li>
           <li><a th:href="@{'/notification'}">Уведомления</a></li>
-          <li><a th:href="@{'/'}">Выйти</a></li>
+          <li><a th:href="@{'/welcomeFormBack'}">Выйти</a></li>
         </ul>
       </div>
     </div>
@@ -105,6 +105,9 @@
       <h1>Категории:</h1>
       <ul class="spisok" th:each ="category : ${categories}">
         <li><a th:href="@{'/profile/sortCategory/'  + ${category.getIdCategory()}}"><span th:text="${category.getTitle()}"></span></a></li>
+      </ul>
+      <ul class="spisok">
+        <li><a th:href="@{'/profile'}"><span>Сброс</span></a></li>
       </ul>
     </div>
   </div>

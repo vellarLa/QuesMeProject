@@ -64,6 +64,11 @@ public class NotificationEntity {
             else
                 this.content = "Пользователь " + question.getReceiver().getNickname() + " ответила на вопрос: " + question.getText();
         }
+        if (type.equalsIgnoreCase("Жалоба на вопрос"))
+        {
+            this.owner = question.getSender();
+            this.content = "Была подана жалоба на вопрос '" + question.getText() + "'";
+        }
     }
     public NotificationEntity(String type, QuestionEntity question, String complaintStatus)
     {

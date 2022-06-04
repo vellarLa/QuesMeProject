@@ -157,7 +157,7 @@ public class QuestionService {
         for (QuestionEntity  question: all) {
             if (Objects.equals(question.getStatus(), "Получен ответ")) {
                 for (UserEntity  user: subscript) {
-                    if (user.getIdUser()==question.getReceiver().getIdUser()) {
+                    if (user.getIdUser()==question.getReceiver().getIdUser() && question.getSender().getIdUser() != idUser) {
                         rez.add(question);
                     }
                 }

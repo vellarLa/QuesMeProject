@@ -115,6 +115,12 @@ public class UserService {
         int ban = user.getBan() + 1;
         user.setBan(ban);
         save(user);
+
+        if (ban < MAXBAN)
+        {
+            NotificationEntity notificationEntity = new NotificationEntity(user, "Бан", ban);
+            notificationRepository.save(notificationEntity);
+        }
     }
     public void rightCount (String property, int countMin, int countMax, String except) throws ErrorFieldException {
         if (property.length() > countMax || property.length()<countMin)

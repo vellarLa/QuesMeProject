@@ -19,6 +19,8 @@ public class ComplaintService {
 
     private final ComplaintRepository complaintRepository;
     private final NotificationService notificationRepository;
+    private final UserService userService;
+
 
     public Optional<ComplaintEntity> getById(Integer idComplaint) {return complaintRepository.findById(idComplaint);}
 
@@ -37,6 +39,9 @@ public class ComplaintService {
         save(complaintEntity);
         NotificationEntity notificationEntity = new NotificationEntity("Жалоба рассмотрена", complaintEntity.getQuestion(), status);
         notificationRepository.save(notificationEntity);
+        if (status.equalsIgnoreCase("Принята")){
+            userService.addBan(complaintEntity.getQuestion().getSender().getIdUser());
+        }
     }
 
     public void deleteByIdQuestion (Integer idQuestion) {

@@ -12,7 +12,7 @@
       enctype="multipart/form-data" >
     <fieldset>
 
-        <label class="form_label"> Имя <input type="text" id="name" placeholder="Имя" th:field="*{name}" class="type-form"></input></label>
+        <label class="form_label"> Имя <input type="text" id="name" autocomplete="off" placeholder="Имя" th:field="*{name}" class="type-form"></input></label>
         <p class="form_label">Пол</p>
         <label class="check_form_label">Мужской
             <input type="radio" name="sex" value="M" th:field="*{sex}"/>
@@ -23,9 +23,9 @@
             <span></span>
         </label>
         <label class="form_label">Аватар <input type="file" value="Выберите файл" class="input_form" name="photo" accept="image/png, image/jpeg"></input></label>
-        <label class="form_label"> Никнейм (должен содержать от 4 до 15 символов и быть уникальным) <input type="text" id="nickname" placeholder="Ник" th:field="*{nickname}" class="type-form"></input></label>
-        <label class="form_label"> Логин (должен содержать от 4 до 15 символов и быть уникальным) <input type="text" id="login" placeholder="Логин" th:field="*{login}" class="type-form"></input></label>
-        <label class="form_label"> Пароль (должен содержать от 5 до 15 символов) <input type="password" id="password" placeholder="Пароль" th:field="*{password}" class="type-form"></input></label>
+        <label class="form_label"> Никнейм (должен содержать от 4 до 15 символов и быть уникальным) <input type="text" id="nickname" autocomplete="off" placeholder="Ник" th:field="*{nickname}" class="type-form"></input></label>
+        <label class="form_label"> Логин (должен содержать от 4 до 15 символов и быть уникальным) <input type="text" id="login" autocomplete="off" placeholder="Логин" th:field="*{login}" class="type-form"></input></label>
+        <label class="form_label"> Пароль (должен содержать от 5 до 15 символов) <input type="password" id="password" autocomplete="off" placeholder="Пароль" th:field="*{password}" class="type-form"></input></label>
         <label class="form_label"> О себе <textarea type="text" id="description" placeholder="О себе" rows="7" th:field="*{description}" class="type-form"></textarea></label>
         <label><button type="submit" class="form_button">Создать</button>
             <button type="reset" class="form_button">Очистить</button></label>
